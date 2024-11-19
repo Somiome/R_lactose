@@ -1,6 +1,7 @@
 # History files
 .Rhistory
 .Rapp.history
+.obsidian
 
 # Session Data files
 .RData

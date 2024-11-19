@@ -1,0 +1,90 @@
+"Country","Group","Prevalance..primary.","X95..CI.min","X95..CI.max","Prevalance..primary...secondary.","X95..CI.min.1","X95..CI.max.1","SoybeanProduction2022","SoybeanProduction2021","SoybeanProduction2020","SoybeanProduction2019","SoybeanProduction2018"
+"Afghanistan","Asia",0.82,0.79,0.86,0,0,0,0,0,0,0,0
+"Cambodia","Asia",0.68,0.66,0.71,0.42,0.35,0.49,56436,63024,47497,42100,91800
+"China","Asia",0.85,0.83,0.86,0.85,0.83,0.86,20285000,16404194,19604447,18104776,15971504
+"India","Asia",0.61,0.58,0.64,0.57,0.53,0.6,12986720,12610300,11225850,13267520,10932970
+"Iran","Asia",0.88,0.83,0.93,0.85,0.75,0.95,210000,2e+05,190000,180000,160000
+"Japan","Asia",0.73,0.59,0.86,0.73,0.59,0.86,242800,246500,218900,217800,211300
+"Malaysia","Asia",0.87,0.84,0.91,0.87,0.84,0.91,0,0,0,0,0
+"Mongolia","Asia",0.88,0.83,0.92,0.88,0.83,0.92,0,0,0,0,0
+"Myanmar","Asia",0.92,0.84,1,0,0,0,131223,133664,135132,141939,143717
+"Pakistan","Asia",0.58,0.56,0.61,0.65,0.61,0.68,9,48,201,15,28
+"South Korea","Asia",1,1,1,1,1,1,129925,110781,80926,105340,89410
+"Sri Lanka","Asia",0.73,0.66,0.79,0.73,0.66,0.79,3842,3794,7879,2197,2500
+"Taiwan","Asia",0.88,0.79,0.97,0,0,0,5000,4194,4447,4776,4404
+"Thailand","Asia",0.84,0.79,0.9,0.38,0.23,0.54,20802,21234,22800,26283,41165
+"Vietnam","Asia",1,1,1,1,1,1,52146,59138,65405,77263,81348
+"Australia","Oceania",0.44,0.35,0.53,0.44,0.35,0.53,57200,40219,17323,15136,28903
+"New Zealand","Oceania",0.1,0.08,0.11,0.08,0.07,0.1,0,0,0,0,0
+"Papua New Guinea","Oceania",0.91,0.87,0.96,0.88,0.81,0.96,0,0,0,0,0
+"Solomon Islands","Oceania",1,1,1,0,0,0,0,0,0,0,0
+"Armenia","Eastern Europe",0.98,0.96,1,0,0,0,0,0,0,0,0
+"Azerbaijan","Eastern Europe",0.96,0.91,1.01,0,0,0,30,30,29,30,29
+"Kazakhstan","Eastern Europe",0.75,0.65,0.84,0.75,0.64,0.84,250385,237845,260639,282185,255437
+"Russia","Eastern Europe",0.61,0.59,0.64,0.57,0.53,0.6,6003153,4759908,4307593,4359956,4026850
+"Ukraine","Eastern Europe",0.61,0.51,0.71,0,0,0,3443800,3493200,2797670,3698710,4460770
+"Uzbekistan","Eastern Europe",0.92,0.87,0.96,0.89,0.83,0.95,34862,29473,7460,10858,11399
+"Czech Republic","Former Soviet Republics",0.81,0.75,0.87,0,0,0,65540,51460,33020,27840,25260
+"Estonia","Former Soviet Republics",0.28,0.25,0.31,0.25,0.2,0.3,0,0,0,0,0
+"Hungary","Former Soviet Republics",0.39,0.36,0.41,0.39,0.36,0.41,134470,156580,165760,169570,181240
+"Poland","Former Soviet Republics",0.43,0.39,0.47,0.35,0.31,0.39,43780,20970,15960,15540,10390
+"Brazil","America",0.6,0.58,0.62,0.6,0.58,0.62,120701031,134799179,121820949,114316829,117912450
+"Chile","America",0.56,0.5,0.62,0.56,0.5,0.62,0,0,0,0,0
+"Colombia","America",0.8,0.73,0.87,0.8,0.73,0.87,141987,122491,119412,114056,92231
+"Mexico","America",0.48,0.44,0.52,0.48,0.44,0.52,241371,288203,246019,232680,324011
+"Uruguay","America",0.65,0.59,0.71,0.65,0.59,0.71,647830,1707000,1990000,2828000,1334000
+"Canada","America",0.59,0.44,0.74,0.59,0.44,0.74,6543158,6224029,6358500,6145000,7416600
+"United States","America",0.36,0.33,0.39,0.53,0.47,0.58,116377000,121527780,114748940,96667090,120514490
+"Cyprus","Middle East",0.16,0.15,0.18,0.16,0.15,0.18,0,0,0,0,0
+"Iraq","Middle East",0.93,0.88,0.98,0.93,0.88,0.98,33,34,33,33,35
+"Israel","Middle East",0.89,0.88,0.91,0.9,0.88,0.92,0,0,0,0,0
+"Jordan","Middle East",0.56,0.48,0.64,0.43,0.29,0.57,0,0,0,0,0
+"Kuwait","Middle East",0.56,0.5,0.62,0.5,0.43,0.57,0,0,0,0,0
+"Lebanon","Middle East",0.78,0.69,0.87,0.78,0.69,0.87,0,0,0,0,0
+"Oman","Middle East",0.96,0.95,0.97,0.96,0.95,0.97,0,0,0,0,0
+"Saudi Arabia","Middle East",0.28,0.25,0.31,0.23,0.19,0.26,0,0,0,0,0
+"Syria","Middle East",0.95,0.93,0.98,0.97,0.94,1,2350,4458,6227,2086,1727
+"Turkey","Middle East",0.69,0.66,0.71,0.65,0.61,0.69,155000,182000,155225,150000,140000
+"Yemen","Middle East",1,0.99,1,1,0.99,1,0,0,0,0,0
+"Algeria","Northern Africa",0.62,0.54,0.7,0.61,0.49,0.73,0,0,0,0,0
+"Egypt","Northern Africa",0.68,0.66,0.71,0.42,0.35,0.49,38000,62586,36420,36260,46997
+"Morocco","Northern Africa",0.73,0.69,0.77,0.73,0.68,0.79,1000,1000,1000,1000,1000
+"Tunisia","Northern Africa",0.84,0.73,0.95,0,0,0,0,0,0,0,0
+"Western Sahara","Northern Africa",0.53,0.41,0.65,0.53,0.41,0.65,0,0,0,0,0
+"Angola","Africa (southern, eastern, western)",0.94,0.91,0.97,0.94,0.91,0.97,37374,37317,37961,37350,35266
+"Botswana","Africa (southern, eastern, western)",0.88,0.78,0.98,0.85,0.7,1,0,0,0,0,0
+"Cameroon","Africa (southern, eastern, western)",0.89,0.87,0.91,0.95,0.93,0.96,97703,110043,93192,65190,59681
+"Democratic Republic of the Congo","Africa (southern, eastern, western)",1,1,1,0,0,0,0,0,0,0,0
+"Ethiopia","Africa (southern, eastern, western)",0.77,0.75,0.79,0.81,0.79,0.83,190000,185522,208676,125623,149455
+"Gabon","Africa (southern, eastern, western)",0.93,0.88,0.98,0,0,0,3932,3945,3936,3916,3981
+"Ghana","Africa (southern, eastern, western)",1,1,1,0,0,0,2e+05,190000,182000,180000,176700
+"Kenya","Africa (southern, eastern, western)",0.39,0.34,0.43,0.39,0.34,0.43,2000,2281,2396,2396,2398
+"Malawi","Africa (southern, eastern, western)",1,1,1,0,0,0,220000,264497,210000,180000,175475
+"Mozambique","Africa (southern, eastern, western)",0.95,0.93,0.98,0.97,0.94,1,50000,115000,75000,55000,55000
+"Namibia","Africa (southern, eastern, western)",0.93,0.89,0.96,0.87,0.8,0.94,0,0,0,0,0
+"Niger","Africa (southern, eastern, western)",0.13,0.07,0.19,0.13,0.07,0.19,0,0,0,0,0
+"Nigeria","Africa (southern, eastern, western)",0.87,0.81,0.93,0,0,0,1060000,1166050,1262280,8e+05,660000
+"Republic of Congo","Africa (southern, eastern, western)",0.93,0.88,0.98,0,0,0,0,0,0,0,0
+"Rwanda","Africa (southern, eastern, western)",0.49,0.39,0.59,0.49,0.39,0.59,34056,26857,23755,24526,22809
+"Senegal","Africa (southern, eastern, western)",0.79,0.76,0.82,0,0,0,0,0,0,0,0
+"Somalia","Africa (southern, eastern, western)",0.94,0.88,0.99,0.94,0.88,0.99,0,0,0,0,0
+"South Africa","Africa (southern, eastern, western)",0.81,0.77,0.84,0.77,0.72,0.81,1148300,1897000,1245500,1170345,1540000
+"Sudan","Africa (southern, eastern, western)",0.55,0.53,0.57,0.53,0.5,0.55,0,0,0,0,0
+"Tanzania","Africa (southern, eastern, western)",0.45,0.41,0.49,0.45,0.41,0.49,41069,75000,45000,22953,21321
+"Uganda","Africa (southern, eastern, western)",0.87,0.8,0.94,0.91,0.85,0.98,140000,265870,160000,126000,107624
+"Zambia","Africa (southern, eastern, western)",1,1,1,0,0,0,475353,411115,296866,281389,302720
+"Austria","Europe (western, southern, northern)",0.22,0.19,0.25,0.22,0.19,0.25,248420,237830,204860,217780,186490
+"Belgium","Europe (western, southern, northern)",0.15,0.13,0.17,0.15,0.13,0.17,0,0,0,0,0
+"Denmark","Europe (western, southern, northern)",0.04,0,0.09,0.04,0,0.09,0,0,0,0,0
+"Finland","Europe (western, southern, northern)",0.19,0.18,0.2,0.19,0.18,0.2,0,0,0,0,0
+"France","Europe (western, southern, northern)",0.36,0.32,0.39,0.25,0.17,0.33,375820,439350,406810,428530,398480
+"Germany","Europe (western, southern, northern)",0.16,0.15,0.18,0.16,0.15,0.18,120500,106600,90500,84100,58700
+"Greece","Europe (western, southern, northern)",0.55,0.52,0.59,0.75,0.7,0.79,680,1230,1840,3720,2520
+"Ireland","Europe (western, southern, northern)",0.04,-0.01,0.09,0.04,-0.01,0.09,0,0,0,0,0
+"Italy","Europe (western, southern, northern)",0.72,0.71,0.74,0.72,0.7,0.74,943400,923470,1005630,1042830,1186350
+"Netherlands","Europe (western, southern, northern)",0.12,0.11,0.12,0.1,0.1,0.11,0,0,0,0,0
+"Norway","Europe (western, southern, northern)",0.12,0.08,0.16,0.12,0.08,0.16,0,0,0,0,0
+"Portugal","Europe (western, southern, northern)",0.4,0.33,0.47,0.4,0.33,0.47,0,0,0,0,0
+"Spain","Europe (western, southern, northern)",0.29,0.27,0.31,0.28,0.25,0.32,3790,4770,4620,5170,4350
+"Sweden","Europe (western, southern, northern)",0.07,0.04,0.09,0.07,0.04,0.09,0,0,0,0,0
+"United Kingdom","Europe (western, southern, northern)",0.08,0.07,0.09,0.08,0.08,0.09,0,0,0,0,0
