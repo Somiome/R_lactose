@@ -229,12 +229,12 @@ ggplot(LM_tmp, aes(
   )
 
 ## Fig 5: LMP of each country on map
- <- LM %>%
+LM_CM_cal <- LM %>%
   left_join(CM_cal, by = c("Country" = "Area"))
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 map_data <- world %>%
-  left_join(, by = c("name" = "Country"))
+  left_join(LM_CM_cal, by = c("name" = "Country"))
 ggplot(data = map_data) +
   geom_sf(aes(fill = Preval_primary), color = "black", size = 0.1) +
   scale_fill_viridis_c(option = "viridis", na.value = "white", name = "LMP") +
@@ -299,7 +299,7 @@ ggplot(CM_fsq, aes(x = Mean)) +
 
 
 ## Fig 7: boxplots of CM_cal per group
-ggplot(, aes(x = Group, y = Mean, fill = Group)) +
+ggplot(LM_CM_cal, aes(x = Group, y = Mean, fill = Group)) +
   geom_boxplot() +
   scale_fill_manual(values = cols) +
   scale_x_discrete(labels = c('AFR', 'AME', 'ASI', 'EEU', 'EUR', 'FSR', 'MIE', 'NAF', 'OCE')) +
@@ -335,7 +335,7 @@ ggplot(LM_CM_fsq, aes(x = Group, y = Mean, fill = Group)) +
 ## Fig 9: CM of each country on map
 world_cm_cal <- ne_countries(scale = "medium", returnclass = "sf")
 map_data_cm_cal <- world_cm_cal %>%
-  left_join(, by = c("name" = "Country"))
+  left_join(LM_CM_cal, by = c("name" = "Country"))
 ggplot(data = map_data_cm_cal) +
   geom_sf(aes(fill = Mean), color = "black", size = 0.1) +
   scale_fill_viridis_c(option = "plasma", na.value = "white", name = "Kcal") +
@@ -362,10 +362,10 @@ ggplot(data = map_data_cm_fsq) +
 ##############################################################################
 
 # A. LMP & CM_cal(Mean)
-lm($Mean ~ $Preval_primary)
-cor($Mean, $Preval_primary) #-0.05720739
+lm(LM_CM_cal$Mean ~ LM_CM_cal$Preval_primary)
+cor(LM_CM_cal$Mean, LM_CM_cal$Preval_primary) #-0.05720739
 
-ggplot(, aes(x = Mean, y = Preval_primary)) +
+ggplot(LM_CM_cal, aes(x = Mean, y = Preval_primary)) +
   geom_point(aes(color = Mean)) +
   geom_smooth(method = "lm", color = "violetred2", se = FALSE) +
   scale_color_viridis_c(option = "plasma") +
@@ -377,7 +377,7 @@ ggplot(, aes(x = Mean, y = Preval_primary)) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5))
 
-ggplot(, aes(x = Mean, y = Preval_primary)) +
+ggplot(LM_CM_cal, aes(x = Mean, y = Preval_primary)) +
   geom_point(aes(color = Mean)) +
   geom_smooth(method = "lm", color = "violetred2", se = FALSE) +
   scale_x_break(c(5e+06, 6e+07), scales = 0.1) +
@@ -552,6 +552,7 @@ tree_fit2 <- rpart(CM_fsq_mean ~ Preval_primary + pop_under15 + pop_under65 + po
 plot(tree_fit2)
 text(tree_fit2)
 summary(tree_fit2)
+
 
 
 
