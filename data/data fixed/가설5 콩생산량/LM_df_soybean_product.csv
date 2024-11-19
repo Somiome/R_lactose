@@ -1,0 +1,90 @@
+Country,Group,Prevalance..primary.,X95..CI.min,X95..CI.max,Prevalance..primary...secondary.,X95..CI.min.1,X95..CI.max.1,Domain.Code,Domain,Area.Code,Element.Code,Element,Item.Code,Item,Unit,average_2000_2021,Flag,Flag.Description
+Afghanistan,Asia,0.82,0.79,0.86,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Cambodia,Asia,0.68,0.66,0.71,0.42,0.35,0.49,QCL,Crops and livestock products,115,5510,Production,236,Soya beans,t,90099.41,E,Estimated value
+China,Asia,0.85,0.83,0.86,0.85,0.83,0.86,QCL,Crops and livestock products,351,5510,Production,236,Soya beans,t,15292118.11,E,Estimated value
+India,Asia,0.61,0.58,0.64,0.57,0.53,0.6,QCL,Crops and livestock products,100,5510,Production,236,Soya beans,t,10274734.35,E,Estimated value
+Iran,Asia,0.88,0.83,0.93,0.85,0.75,0.95,QCL,Crops and livestock products,102,5510,Production,236,Soya beans,t,159123.85,E,Estimated value
+Japan,Asia,0.73,0.59,0.86,0.73,0.59,0.86,QCL,Crops and livestock products,110,5510,Production,236,Soya beans,t,232347.83,E,Estimated value
+Malaysia,Asia,0.87,0.84,0.91,0.87,0.84,0.91,QCL,Crops and livestock products,131,5510,Production,236,Soya beans,t,0,E,Estimated value
+Mongolia,Asia,0.88,0.83,0.92,0.88,0.83,0.92,0,0,0,0,0,0,0,0,0,0,0
+Myanmar,Asia,0.92,0.84,1,0,0,0,QCL,Crops and livestock products,28,5510,Production,236,Soya beans,t,164270.68,E,Estimated value
+Pakistan,Asia,0.58,0.56,0.61,0.65,0.61,0.68,QCL,Crops and livestock products,165,5510,Production,236,Soya beans,t,279.13,E,Estimated value
+South Korea,Asia,1,1,1,1,1,1,QCL,Crops and livestock products,117,5510,Production,236,Soya beans,t,119438.43,E,Estimated value
+Sri Lanka,Asia,0.73,0.66,0.79,0.73,0.66,0.79,QCL,Crops and livestock products,38,5510,Production,236,Soya beans,t,4934.51,E,Estimated value
+Taiwan,Asia,0.88,0.79,0.97,0,0,0,QCL,Crops and livestock products,214,5510,Production,236,Soya beans,t,1666.19,E,Estimated value
+Thailand,Asia,0.84,0.79,0.9,0.38,0.23,0.54,QCL,Crops and livestock products,216,5510,Production,236,Soya beans,t,130401.43,E,Estimated value
+Vietnam,Asia,1,1,1,1,1,1,QCL,Crops and livestock products,237,5510,Production,236,Soya beans,t,178745.61,E,Estimated value
+Australia,Oceania,0.44,0.35,0.53,0.44,0.35,0.53,QCL,Crops and livestock products,10,5510,Production,236,Soya beans,t,46836.35,E,Estimated value
+New Zealand,Oceania,0.1,0.08,0.11,0.08,0.07,0.1,QCL,Crops and livestock products,156,5510,Production,236,Soya beans,t,0,E,Estimated value
+Papua New Guinea,Oceania,0.91,0.87,0.96,0.88,0.81,0.96,0,0,0,0,0,0,0,0,0,0,0
+Solomon Islands,Oceania,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Armenia,Eastern Europe,0.98,0.96,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Azerbaijan,Eastern Europe,0.96,0.91,1.01,0,0,0,QCL,Crops and livestock products,52,5510,Production,236,Soya beans,t,43.13,E,Estimated value
+Kazakhstan,Eastern Europe,0.75,0.65,0.84,0.75,0.64,0.84,QCL,Crops and livestock products,108,5510,Production,236,Soya beans,t,145933.83,E,Estimated value
+Russia,Eastern Europe,0.61,0.59,0.64,0.57,0.53,0.6,QCL,Crops and livestock products,185,5510,Production,236,Soya beans,t,2054274.11,E,Estimated value
+Ukraine,Eastern Europe,0.61,0.51,0.71,0,0,0,QCL,Crops and livestock products,230,5510,Production,236,Soya beans,t,2084841.3,E,Estimated value
+Uzbekistan,Eastern Europe,0.92,0.87,0.96,0.89,0.83,0.95,QCL,Crops and livestock products,235,5510,Production,236,Soya beans,t,11158.04,E,Estimated value
+Czech Republic,Former Soviet Republics,0.81,0.75,0.87,0,0,0,QCL,Crops and livestock products,167,5510,Production,236,Soya beans,t,20711.62,E,Estimated value
+Estonia,Former Soviet Republics,0.28,0.25,0.31,0.25,0.2,0.3,QCL,Crops and livestock products,63,5510,Production,236,Soya beans,t,0,E,Estimated value
+Hungary,Former Soviet Republics,0.39,0.36,0.41,0.39,0.36,0.41,QCL,Crops and livestock products,97,5510,Production,236,Soya beans,t,103042.52,E,Estimated value
+Poland,Former Soviet Republics,0.43,0.39,0.47,0.35,0.31,0.39,QCL,Crops and livestock products,173,5510,Production,236,Soya beans,t,6344.3,E,Estimated value
+Brazil,America,0.6,0.58,0.62,0.6,0.58,0.62,QCL,Crops and livestock products,21,5510,Production,236,Soya beans,t,77784147.48,E,Estimated value
+Chile,America,0.56,0.5,0.62,0.56,0.5,0.62,QCL,Crops and livestock products,40,5510,Production,236,Soya beans,t,0,E,Estimated value
+Colombia,America,0.8,0.73,0.87,0.8,0.73,0.87,QCL,Crops and livestock products,44,5510,Production,236,Soya beans,t,81214.36,E,Estimated value
+Mexico,America,0.48,0.44,0.52,0.48,0.44,0.52,QCL,Crops and livestock products,138,5510,Production,236,Soya beans,t,220128.28,E,Estimated value
+Uruguay,America,0.65,0.59,0.71,0.65,0.59,0.71,QCL,Crops and livestock products,234,5510,Production,236,Soya beans,t,1430328.26,E,Estimated value
+Canada,America,0.59,0.44,0.74,0.59,0.44,0.74,QCL,Crops and livestock products,33,5510,Production,236,Soya beans,t,4655251.61,E,Estimated value
+United States,America,0.36,0.33,0.39,0.53,0.47,0.58,QCL,Crops and livestock products,231,5510,Production,236,Soya beans,t,94170359.13,E,Estimated value
+Cyprus,Middle East,0.16,0.15,0.18,0.16,0.15,0.18,QCL,Crops and livestock products,50,5510,Production,236,Soya beans,t,0,E,Estimated value
+Iraq,Middle East,0.93,0.88,0.98,0.93,0.88,0.98,QCL,Crops and livestock products,103,5510,Production,236,Soya beans,t,37.26,E,Estimated value
+Israel,Middle East,0.89,0.88,0.91,0.9,0.88,0.92,0,0,0,0,0,0,0,0,0,0,0
+Jordan,Middle East,0.56,0.48,0.64,0.43,0.29,0.57,QCL,Crops and livestock products,112,5510,Production,236,Soya beans,t,0,E,Estimated value
+Kuwait,Middle East,0.56,0.5,0.62,0.5,0.43,0.57,0,0,0,0,0,0,0,0,0,0,0
+Lebanon,Middle East,0.78,0.69,0.87,0.78,0.69,0.87,0,0,0,0,0,0,0,0,0,0,0
+Oman,Middle East,0.96,0.95,0.97,0.96,0.95,0.97,0,0,0,0,0,0,0,0,0,0,0
+Saudi Arabia,Middle East,0.28,0.25,0.31,0.23,0.19,0.26,0,0,0,0,0,0,0,0,0,0,0
+Syria,Middle East,0.95,0.93,0.98,0.97,0.94,1,QCL,Crops and livestock products,212,5510,Production,236,Soya beans,t,2747.39,E,Estimated value
+Turkey,Middle East,0.69,0.66,0.71,0.65,0.61,0.69,QCL,Crops and livestock products,223,5510,Production,236,Soya beans,t,102886.7,E,Estimated value
+Yemen,Middle East,1,0.99,1,1,0.99,1,0,0,0,0,0,0,0,0,0,0,0
+Algeria,Northern Africa,0.62,0.54,0.7,0.61,0.49,0.73,0,0,0,0,0,0,0,0,0,0,0
+Egypt,Northern Africa,0.68,0.66,0.71,0.42,0.35,0.49,QCL,Crops and livestock products,59,5510,Production,236,Soya beans,t,34210.74,E,Estimated value
+Morocco,Northern Africa,0.73,0.69,0.77,0.73,0.68,0.79,QCL,Crops and livestock products,143,5510,Production,236,Soya beans,t,1008.7,E,Estimated value
+Tunisia,Northern Africa,0.84,0.73,0.95,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Western Sahara,Northern Africa,0.53,0.41,0.65,0.53,0.41,0.65,0,0,0,0,0,0,0,0,0,0,0
+Angola,"Africa (southern, eastern, western)",0.94,0.91,0.97,0.94,0.91,0.97,QCL,Crops and livestock products,7,5510,Production,236,Soya beans,t,14529.21,E,Estimated value
+Botswana,"Africa (southern, eastern, western)",0.88,0.78,0.98,0.85,0.7,1,0,0,0,0,0,0,0,0,0,0,0
+Cameroon,"Africa (southern, eastern, western)",0.89,0.87,0.91,0.95,0.93,0.96,QCL,Crops and livestock products,32,5510,Production,236,Soya beans,t,29729.43,E,Estimated value
+Democratic Republic of the Congo,"Africa (southern, eastern, western)",1,1,1,0,0,0,QCL,Crops and livestock products,250,5510,Production,236,Soya beans,t,19124.39,E,Estimated value
+Ethiopia,"Africa (southern, eastern, western)",0.77,0.75,0.79,0.81,0.79,0.83,QCL,Crops and livestock products,238,5510,Production,236,Soya beans,t,61166.1,E,Estimated value
+Gabon,"Africa (southern, eastern, western)",0.93,0.88,0.98,0,0,0,QCL,Crops and livestock products,74,5510,Production,236,Soya beans,t,3334.12,E,Estimated value
+Ghana,"Africa (southern, eastern, western)",1,1,1,0,0,0,QCL,Crops and livestock products,81,5510,Production,236,Soya beans,t,154344,E,Estimated value
+Kenya,"Africa (southern, eastern, western)",0.39,0.34,0.43,0.39,0.34,0.43,QCL,Crops and livestock products,114,5510,Production,236,Soya beans,t,2218.78,E,Estimated value
+Malawi,"Africa (southern, eastern, western)",1,1,1,0,0,0,QCL,Crops and livestock products,130,5510,Production,236,Soya beans,t,105111.04,E,Estimated value
+Mozambique,"Africa (southern, eastern, western)",0.95,0.93,0.98,0.97,0.94,1,QCL,Crops and livestock products,144,5510,Production,236,Soya beans,t,63857.14,E,Estimated value
+Namibia,"Africa (southern, eastern, western)",0.93,0.89,0.96,0.87,0.8,0.94,0,0,0,0,0,0,0,0,0,0,0
+Niger,"Africa (southern, eastern, western)",0.13,0.07,0.19,0.13,0.07,0.19,0,0,0,0,0,0,0,0,0,0,0
+Nigeria,"Africa (southern, eastern, western)",0.87,0.81,0.93,0,0,0,QCL,Crops and livestock products,159,5510,Production,236,Soya beans,t,662434.43,E,Estimated value
+Republic of Congo,"Africa (southern, eastern, western)",0.93,0.88,0.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Rwanda,"Africa (southern, eastern, western)",0.49,0.39,0.59,0.49,0.39,0.59,QCL,Crops and livestock products,184,5510,Production,236,Soya beans,t,27672.69,E,Estimated value
+Senegal,"Africa (southern, eastern, western)",0.79,0.76,0.82,0,0,0,QCL,Crops and livestock products,195,5510,Production,236,Soya beans,t,0,E,Estimated value
+Somalia,"Africa (southern, eastern, western)",0.94,0.88,0.99,0.94,0.88,0.99,0,0,0,0,0,0,0,0,0,0,0
+South Africa,"Africa (southern, eastern, western)",0.81,0.77,0.84,0.77,0.72,0.81,QCL,Crops and livestock products,202,5510,Production,236,Soya beans,t,715078.26,E,Estimated value
+Sudan,"Africa (southern, eastern, western)",0.55,0.53,0.57,0.53,0.5,0.55,0,0,0,0,0,0,0,0,0,0,0
+Tanzania,"Africa (southern, eastern, western)",0.45,0.41,0.49,0.45,0.41,0.49,QCL,Crops and livestock products,215,5510,Production,236,Soya beans,t,11818.01,E,Estimated value
+Uganda,"Africa (southern, eastern, western)",0.87,0.8,0.94,0.91,0.85,0.98,QCL,Crops and livestock products,226,5510,Production,236,Soya beans,t,102405,E,Estimated value
+Zambia,"Africa (southern, eastern, western)",1,1,1,0,0,0,QCL,Crops and livestock products,251,5510,Production,236,Soya beans,t,172753.93,E,Estimated value
+Austria,"Europe (western, southern, northern)",0.22,0.19,0.25,0.22,0.19,0.25,QCL,Crops and livestock products,11,5510,Production,236,Soya beans,t,112033.26,E,Estimated value
+Belgium,"Europe (western, southern, northern)",0.15,0.13,0.17,0.15,0.13,0.17,0,0,0,0,0,0,0,0,0,0,0
+Denmark,"Europe (western, southern, northern)",0.04,0,0.09,0.04,0,0.09,QCL,Crops and livestock products,54,5510,Production,236,Soya beans,t,0,E,Estimated value
+Finland,"Europe (western, southern, northern)",0.19,0.18,0.2,0.19,0.18,0.2,QCL,Crops and livestock products,67,5510,Production,236,Soya beans,t,0,E,Estimated value
+France,"Europe (western, southern, northern)",0.36,0.32,0.39,0.25,0.17,0.33,QCL,Crops and livestock products,68,5510,Production,236,Soya beans,t,233940.12,E,Estimated value
+Germany,"Europe (western, southern, northern)",0.16,0.15,0.18,0.16,0.15,0.18,QCL,Crops and livestock products,79,5510,Production,236,Soya beans,t,27869.57,E,Estimated value
+Greece,"Europe (western, southern, northern)",0.55,0.52,0.59,0.75,0.7,0.79,QCL,Crops and livestock products,84,5510,Production,236,Soya beans,t,2219.44,E,Estimated value
+Ireland,"Europe (western, southern, northern)",0.04,-0.01,0.09,0.04,-0.01,0.09,QCL,Crops and livestock products,104,5510,Production,236,Soya beans,t,0,E,Estimated value
+Italy,"Europe (western, southern, northern)",0.72,0.71,0.74,0.72,0.7,0.74,QCL,Crops and livestock products,106,5510,Production,236,Soya beans,t,741072.97,E,Estimated value
+Netherlands,"Europe (western, southern, northern)",0.12,0.11,0.12,0.1,0.1,0.11,QCL,Crops and livestock products,150,5510,Production,236,Soya beans,t,0,E,Estimated value
+Norway,"Europe (western, southern, northern)",0.12,0.08,0.16,0.12,0.08,0.16,0,0,0,0,0,0,0,0,0,0,0
+Portugal,"Europe (western, southern, northern)",0.4,0.33,0.47,0.4,0.33,0.47,0,0,0,0,0,0,0,0,0,0,0
+Spain,"Europe (western, southern, northern)",0.29,0.27,0.31,0.28,0.25,0.32,QCL,Crops and livestock products,203,5510,Production,236,Soya beans,t,2951.76,E,Estimated value
+Sweden,"Europe (western, southern, northern)",0.07,0.04,0.09,0.07,0.04,0.09,0,0,0,0,0,0,0,0,0,0,0
+United Kingdom,"Europe (western, southern, northern)",0.08,0.07,0.09,0.08,0.08,0.09,0,0,0,0,0,0,0,0,0,0,0

@@ -1,0 +1,90 @@
+Country,Group,Prevalance..primary.,X95..CI.min,X95..CI.max,Prevalance..primary...secondary.,X95..CI.min.1,X95..CI.max.1,Domain.Code,Domain,Area.Code,Element.Code,Element,Item.Code,Item,Unit,Value,Flag,Flag.Description
+Afghanistan,Asia,0.82,0.79,0.86,0,0,0,RL,Land Use,2,7209,Share in Land area,6620,Cropland,%,12.19,E,Estimated value
+Cambodia,Asia,0.68,0.66,0.71,0.42,0.35,0.49,RL,Land Use,115,7209,Share in Land area,6620,Cropland,%,18.73,E,Estimated value
+China,Asia,0.85,0.83,0.86,0.85,0.83,0.86,RL,Land Use,351,7209,Share in Land area,6620,Cropland,%,12.81,E,Estimated value
+India,Asia,0.61,0.58,0.64,0.57,0.53,0.6,RL,Land Use,100,7209,Share in Land area,6620,Cropland,%,56.5,E,Estimated value
+Iran,Asia,0.88,0.83,0.93,0.85,0.75,0.95,RL,Land Use,102,7209,Share in Land area,6620,Cropland,%,10.25,E,Estimated value
+Japan,Asia,0.73,0.59,0.86,0.73,0.59,0.86,RL,Land Use,110,7209,Share in Land area,6620,Cropland,%,14.09,E,Estimated value
+Malaysia,Asia,0.87,0.84,0.91,0.87,0.84,0.91,RL,Land Use,131,7209,Share in Land area,6620,Cropland,%,17.72,E,Estimated value
+Mongolia,Asia,0.88,0.83,0.92,0.88,0.83,0.92,RL,Land Use,141,7209,Share in Land area,6620,Cropland,%,0.73,E,Estimated value
+Myanmar,Asia,0.92,0.84,1,0,0,0,RL,Land Use,28,7209,Share in Land area,6620,Cropland,%,16.49,E,Estimated value
+Pakistan,Asia,0.58,0.56,0.61,0.65,0.61,0.68,RL,Land Use,165,7209,Share in Land area,6620,Cropland,%,40.56,E,Estimated value
+South Korea,Asia,1,1,1,1,1,1,RL,Land Use,117,7209,Share in Land area,6620,Cropland,%,20.6,E,Estimated value
+Sri Lanka,Asia,0.73,0.66,0.79,0.73,0.66,0.79,RL,Land Use,38,7209,Share in Land area,6620,Cropland,%,31.8,E,Estimated value
+Taiwan,Asia,0.88,0.79,0.97,0,0,0,RL,Land Use,214,7209,Share in Land area,6620,Cropland,%,24.38,E,Estimated value
+Thailand,Asia,0.84,0.79,0.9,0.38,0.23,0.54,RL,Land Use,216,7209,Share in Land area,6620,Cropland,%,37.28,E,Estimated value
+Vietnam,Asia,1,1,1,1,1,1,RL,Land Use,237,7209,Share in Land area,6620,Cropland,%,24.61,E,Estimated value
+Australia,Oceania,0.44,0.35,0.53,0.44,0.35,0.53,RL,Land Use,10,7209,Share in Land area,6620,Cropland,%,2.85,E,Estimated value
+New Zealand,Oceania,0.1,0.08,0.11,0.08,0.07,0.1,RL,Land Use,156,7209,Share in Land area,6620,Cropland,%,1.81,E,Estimated value
+Papua New Guinea,Oceania,0.91,0.87,0.96,0.88,0.81,0.96,RL,Land Use,168,7209,Share in Land area,6620,Cropland,%,1.8,E,Estimated value
+Solomon Islands,Oceania,1,1,1,0,0,0,RL,Land Use,25,7209,Share in Land area,6620,Cropland,%,2.55,E,Estimated value
+Armenia,Eastern Europe,0.98,0.96,1,0,0,0,RL,Land Use,1,7209,Share in Land area,6620,Cropland,%,17.57,E,Estimated value
+Azerbaijan,Eastern Europe,0.96,0.91,1.01,0,0,0,RL,Land Use,52,7209,Share in Land area,6620,Cropland,%,25.83,E,Estimated value
+Kazakhstan,Eastern Europe,0.75,0.65,0.84,0.75,0.64,0.84,RL,Land Use,108,7209,Share in Land area,6620,Cropland,%,11.28,E,Estimated value
+Russia,Eastern Europe,0.61,0.59,0.64,0.57,0.53,0.6,RL,Land Use,185,7209,Share in Land area,6620,Cropland,%,7.65,E,Estimated value
+Ukraine,Eastern Europe,0.61,0.51,0.71,0,0,0,RL,Land Use,230,7209,Share in Land area,6620,Cropland,%,58.17,E,Estimated value
+Uzbekistan,Eastern Europe,0.92,0.87,0.96,0.89,0.83,0.95,RL,Land Use,235,7209,Share in Land area,6620,Cropland,%,10.68,E,Estimated value
+Czech Republic,Former Soviet Republics,0.81,0.75,0.87,0,0,0,RL,Land Use,167,7209,Share in Land area,6620,Cropland,%,36.65,E,Estimated value
+Estonia,Former Soviet Republics,0.28,0.25,0.31,0.25,0.2,0.3,RL,Land Use,63,7209,Share in Land area,6620,Cropland,%,17.17,E,Estimated value
+Hungary,Former Soviet Republics,0.39,0.36,0.41,0.39,0.36,0.41,RL,Land Use,97,7209,Share in Land area,6620,Cropland,%,56.43,E,Estimated value
+Poland,Former Soviet Republics,0.43,0.39,0.47,0.35,0.31,0.39,RL,Land Use,173,7209,Share in Land area,6620,Cropland,%,45.51,E,Estimated value
+Brazil,America,0.6,0.58,0.62,0.6,0.58,0.62,RL,Land Use,21,7209,Share in Land area,6620,Cropland,%,6.32,E,Estimated value
+Chile,America,0.56,0.5,0.62,0.56,0.5,0.62,RL,Land Use,40,7209,Share in Land area,6620,Cropland,%,3.99,E,Estimated value
+Colombia,America,0.8,0.73,0.87,0.8,0.73,0.87,RL,Land Use,44,7209,Share in Land area,6620,Cropland,%,4.12,E,Estimated value
+Mexico,America,0.48,0.44,0.52,0.48,0.44,0.52,RL,Land Use,138,7209,Share in Land area,6620,Cropland,%,11.62,E,Estimated value
+Uruguay,America,0.65,0.59,0.71,0.65,0.59,0.71,RL,Land Use,234,7209,Share in Land area,6620,Cropland,%,10.04,E,Estimated value
+Canada,America,0.59,0.44,0.74,0.59,0.44,0.74,RL,Land Use,33,7209,Share in Land area,6620,Cropland,%,4.42,E,Estimated value
+United States,America,0.36,0.33,0.39,0.53,0.47,0.58,RL,Land Use,231,7209,Share in Land area,6620,Cropland,%,19.46,E,Estimated value
+Cyprus,Middle East,0.16,0.15,0.18,0.16,0.15,0.18,RL,Land Use,50,7209,Share in Land area,6620,Cropland,%,21.6,E,Estimated value
+Iraq,Middle East,0.93,0.88,0.98,0.93,0.88,0.98,RL,Land Use,103,7209,Share in Land area,6620,Cropland,%,11.63,E,Estimated value
+Israel,Middle East,0.89,0.88,0.91,0.9,0.88,0.92,RL,Land Use,105,7209,Share in Land area,6620,Cropland,%,19.25,E,Estimated value
+Jordan,Middle East,0.56,0.48,0.64,0.43,0.29,0.57,RL,Land Use,112,7209,Share in Land area,6620,Cropland,%,3.39,E,Estimated value
+Kuwait,Middle East,0.56,0.5,0.62,0.5,0.43,0.57,RL,Land Use,118,7209,Share in Land area,6620,Cropland,%,0.41,E,Estimated value
+Lebanon,Middle East,0.78,0.69,0.87,0.78,0.69,0.87,RL,Land Use,121,7209,Share in Land area,6620,Cropland,%,28.65,E,Estimated value
+Oman,Middle East,0.96,0.95,0.97,0.96,0.95,0.97,RL,Land Use,221,7209,Share in Land area,6620,Cropland,%,0.21,E,Estimated value
+Saudi Arabia,Middle East,0.28,0.25,0.31,0.23,0.19,0.26,RL,Land Use,194,7209,Share in Land area,6620,Cropland,%,1.32,E,Estimated value
+Syria,Middle East,0.95,0.93,0.98,0.97,0.94,1,RL,Land Use,212,7209,Share in Land area,6620,Cropland,%,31.19,E,Estimated value
+Turkey,Middle East,0.69,0.66,0.71,0.65,0.61,0.69,RL,Land Use,223,7209,Share in Land area,6620,Cropland,%,34.17,E,Estimated value
+Yemen,Middle East,1,0.99,1,1,0.99,1,RL,Land Use,249,7209,Share in Land area,6620,Cropland,%,2.84,E,Estimated value
+Algeria,Northern Africa,0.62,0.54,0.7,0.61,0.49,0.73,RL,Land Use,4,7209,Share in Land area,6620,Cropland,%,3.27,E,Estimated value
+Egypt,Northern Africa,0.68,0.66,0.71,0.42,0.35,0.49,RL,Land Use,59,7209,Share in Land area,6620,Cropland,%,3.1,E,Estimated value
+Morocco,Northern Africa,0.73,0.69,0.77,0.73,0.68,0.79,RL,Land Use,143,7209,Share in Land area,6620,Cropland,%,19.46,E,Estimated value
+Tunisia,Northern Africa,0.84,0.73,0.95,0,0,0,RL,Land Use,222,7209,Share in Land area,6620,Cropland,%,31.17,E,Estimated value
+Western Sahara,Northern Africa,0.53,0.41,0.65,0.53,0.41,0.65,RL,Land Use,205,7209,Share in Land area,6620,Cropland,%,0.02,E,Estimated value
+Angola,"Africa (southern, eastern, western)",0.94,0.91,0.97,0.94,0.91,0.97,RL,Land Use,7,7209,Share in Land area,6620,Cropland,%,2.99,E,Estimated value
+Botswana,"Africa (southern, eastern, western)",0.88,0.78,0.98,0.85,0.7,1,RL,Land Use,20,7209,Share in Land area,6620,Cropland,%,0.6,E,Estimated value
+Cameroon,"Africa (southern, eastern, western)",0.89,0.87,0.91,0.95,0.93,0.96,RL,Land Use,32,7209,Share in Land area,6620,Cropland,%,14.7,E,Estimated value
+Democratic Republic of the Congo,"Africa (southern, eastern, western)",1,1,1,0,0,0,RL,Land Use,250,7209,Share in Land area,6620,Cropland,%,3.94,E,Estimated value
+Ethiopia,"Africa (southern, eastern, western)",0.77,0.75,0.79,0.81,0.79,0.83,RL,Land Use,238,7209,Share in Land area,6620,Cropland,%,13.09,E,Estimated value
+Gabon,"Africa (southern, eastern, western)",0.93,0.88,0.98,0,0,0,RL,Land Use,74,7209,Share in Land area,6620,Cropland,%,1.65,E,Estimated value
+Ghana,"Africa (southern, eastern, western)",1,1,1,0,0,0,RL,Land Use,81,7209,Share in Land area,6620,Cropland,%,21.32,E,Estimated value
+Kenya,"Africa (southern, eastern, western)",0.39,0.34,0.43,0.39,0.34,0.43,RL,Land Use,114,7209,Share in Land area,6620,Cropland,%,9.2,E,Estimated value
+Malawi,"Africa (southern, eastern, western)",1,1,1,0,0,0,RL,Land Use,130,7209,Share in Land area,6620,Cropland,%,28.37,E,Estimated value
+Mozambique,"Africa (southern, eastern, western)",0.95,0.93,0.98,0.97,0.94,1,RL,Land Use,144,7209,Share in Land area,6620,Cropland,%,5.24,E,Estimated value
+Namibia,"Africa (southern, eastern, western)",0.93,0.89,0.96,0.87,0.8,0.94,RL,Land Use,147,7209,Share in Land area,6620,Cropland,%,0.89,E,Estimated value
+Niger,"Africa (southern, eastern, western)",0.13,0.07,0.19,0.13,0.07,0.19,RL,Land Use,158,7209,Share in Land area,6620,Cropland,%,10.23,E,Estimated value
+Nigeria,"Africa (southern, eastern, western)",0.87,0.81,0.93,0,0,0,RL,Land Use,159,7209,Share in Land area,6620,Cropland,%,38.78,E,Estimated value
+Republic of Congo,"Africa (southern, eastern, western)",0.93,0.88,0.98,0,0,0,RL,Land Use,46,7209,Share in Land area,6620,Cropland,%,1.64,E,Estimated value
+Rwanda,"Africa (southern, eastern, western)",0.49,0.39,0.59,0.49,0.39,0.59,RL,Land Use,184,7209,Share in Land area,6620,Cropland,%,46.69,E,Estimated value
+Senegal,"Africa (southern, eastern, western)",0.79,0.76,0.82,0,0,0,RL,Land Use,195,7209,Share in Land area,6620,Cropland,%,16.96,E,Estimated value
+Somalia,"Africa (southern, eastern, western)",0.94,0.88,0.99,0.94,0.88,0.99,RL,Land Use,201,7209,Share in Land area,6620,Cropland,%,1.65,E,Estimated value
+South Africa,"Africa (southern, eastern, western)",0.81,0.77,0.84,0.77,0.72,0.81,RL,Land Use,202,7209,Share in Land area,6620,Cropland,%,10.63,E,Estimated value
+Sudan,"Africa (southern, eastern, western)",0.55,0.53,0.57,0.53,0.5,0.55,RL,Land Use,276,7209,Share in Land area,6620,Cropland,%,11.09,E,Estimated value
+Tanzania,"Africa (southern, eastern, western)",0.45,0.41,0.49,0.45,0.41,0.49,RL,Land Use,215,7209,Share in Land area,6620,Cropland,%,11.67,E,Estimated value
+Uganda,"Africa (southern, eastern, western)",0.87,0.8,0.94,0.91,0.85,0.98,RL,Land Use,226,7209,Share in Land area,6620,Cropland,%,34.5,E,Estimated value
+Zambia,"Africa (southern, eastern, western)",1,1,1,0,0,0,RL,Land Use,251,7209,Share in Land area,6620,Cropland,%,4.01,E,Estimated value
+Austria,"Europe (western, southern, northern)",0.22,0.19,0.25,0.22,0.19,0.25,RL,Land Use,11,7209,Share in Land area,6620,Cropland,%,18.58,E,Estimated value
+Belgium,"Europe (western, southern, northern)",0.15,0.13,0.17,0.15,0.13,0.17,RL,Land Use,255,7209,Share in Land area,6620,Cropland,%,28.41,E,Estimated value
+Denmark,"Europe (western, southern, northern)",0.04,0,0.09,0.04,0,0.09,RL,Land Use,54,7209,Share in Land area,6620,Cropland,%,63.04,E,Estimated value
+Finland,"Europe (western, southern, northern)",0.19,0.18,0.2,0.19,0.18,0.2,RL,Land Use,67,7209,Share in Land area,6620,Cropland,%,7.72,E,Estimated value
+France,"Europe (western, southern, northern)",0.36,0.32,0.39,0.25,0.17,0.33,RL,Land Use,68,7209,Share in Land area,6620,Cropland,%,35.42,E,Estimated value
+Germany,"Europe (western, southern, northern)",0.16,0.15,0.18,0.16,0.15,0.18,RL,Land Use,79,7209,Share in Land area,6620,Cropland,%,35.09,E,Estimated value
+Greece,"Europe (western, southern, northern)",0.55,0.52,0.59,0.75,0.7,0.79,RL,Land Use,84,7209,Share in Land area,6620,Cropland,%,29.09,E,Estimated value
+Ireland,"Europe (western, southern, northern)",0.04,-0.01,0.09,0.04,-0.01,0.09,RL,Land Use,104,7209,Share in Land area,6620,Cropland,%,7.05,E,Estimated value
+Italy,"Europe (western, southern, northern)",0.72,0.71,0.74,0.72,0.7,0.74,RL,Land Use,106,7209,Share in Land area,6620,Cropland,%,39.64,E,Estimated value
+Netherlands,"Europe (western, southern, northern)",0.12,0.11,0.12,0.1,0.1,0.11,RL,Land Use,150,7209,Share in Land area,6620,Cropland,%,28.94,E,Estimated value
+Norway,"Europe (western, southern, northern)",0.12,0.08,0.16,0.12,0.08,0.16,RL,Land Use,162,7209,Share in Land area,6620,Cropland,%,2.32,E,Estimated value
+Portugal,"Europe (western, southern, northern)",0.4,0.33,0.47,0.4,0.33,0.47,RL,Land Use,174,7209,Share in Land area,6620,Cropland,%,28.9,E,Estimated value
+Spain,"Europe (western, southern, northern)",0.29,0.27,0.31,0.28,0.25,0.32,RL,Land Use,203,7209,Share in Land area,6620,Cropland,%,38.4,E,Estimated value
+Sweden,"Europe (western, southern, northern)",0.07,0.04,0.09,0.07,0.04,0.09,RL,Land Use,210,7209,Share in Land area,6620,Cropland,%,6.97,E,Estimated value
+United Kingdom,"Europe (western, southern, northern)",0.08,0.07,0.09,0.08,0.08,0.09,RL,Land Use,229,7209,Share in Land area,6620,Cropland,%,27.25,E,Estimated value

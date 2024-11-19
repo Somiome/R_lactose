@@ -1,0 +1,90 @@
+Country,Group,Prevalance..primary.,X95..CI.min,X95..CI.max,Prevalance..primary...secondary.,X95..CI.min.1,X95..CI.max.1,Code,Year,Physicians..per.1.000.people.,GDP.per.capita..PPP..constant.2017.international...,Population..historical.,Continent,time,time.1,time.2,time.3
+Afghanistan,Asia,0.82,0.79,0.86,0,0,0,AFG,2021,0.254,1968.341,40000411,Asia,2021,2015,2020,2020
+Cambodia,Asia,0.68,0.66,0.71,0.42,0.35,0.49,KHM,2021,0.214,4464.2944,16974308,Asia,2021,2015,2019,2019
+China,Asia,0.85,0.83,0.86,0.85,0.83,0.86,CHN,2021,2.387,16296.609,1426437276,Asia,2021,2015,2020,2020
+India,Asia,0.61,0.58,0.64,0.57,0.53,0.6,IND,2021,0.727,6172.0425,1414203889,Asia,2021,2015,2020,2020
+Iran,Asia,0.88,0.83,0.93,0.85,0.75,0.95,IRN,2021,1.514,14691.185,88455491,Asia,2021,2015,2018,2018
+Japan,Asia,0.73,0.59,0.86,0.73,0.59,0.86,JPN,2021,2.614,40044.508,125679341,Asia,2021,2015,2020,2020
+Malaysia,Asia,0.87,0.84,0.91,0.87,0.84,0.91,MYS,2021,2.228,25852.19,34282405,Asia,2021,2015,2020,2020
+Mongolia,Asia,0.88,0.83,0.92,0.88,0.83,0.92,MNG,2021,3.859,12052.294,3339678,Asia,2021,2015,2018,2018
+Myanmar,Asia,0.92,0.84,1,0,0,0,MMR,2021,0.751,5214.3735,53387102,Asia,2021,2015,2019,2019
+Pakistan,Asia,0.58,0.56,0.61,0.65,0.61,0.68,PAK,2021,1.084,5157.5464,239477805,Asia,2021,2015,2019,2019
+South Korea,Asia,1,1,1,1,1,1,KOR,2021,2.508,42396.76,51848401,Asia,2021,2015,2020,2020
+Sri Lanka,Asia,0.73,0.66,0.79,0.73,0.66,0.79,LKA,2021,1.192,13250.63,22700377,Asia,2021,2015,2021,2021
+Taiwan,Asia,0.88,0.79,0.97,0,0,0,0,0,0,0,0,0,0,0,0,0
+Thailand,Asia,0.84,0.79,0.9,0.38,0.23,0.54,THA,2021,0.928,16865.549,71727340,Asia,2021,2015,2020,2020
+Vietnam,Asia,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+Australia,Oceania,0.44,0.35,0.53,0.44,0.35,0.53,AUS,2021,4.102,48651.734,25956416,Oceania,2021,2015,2020,2020
+New Zealand,Oceania,0.1,0.08,0.11,0.08,0.07,0.1,NZL,2021,3.516,44041.902,5107696,Oceania,2021,2015,2021,2021
+Papua New Guinea,Oceania,0.91,0.87,0.96,0.88,0.81,0.96,PNG,2021,0.063,3637.9133,10012899,Oceania,2021,2015,2021,2021
+Solomon Islands,Oceania,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+Armenia,Eastern Europe,0.98,0.96,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+Azerbaijan,Eastern Europe,0.96,0.91,1.01,0,0,0,AZE,2021,3.111,14442.041,10234373,Asia,2021,2015,2019,2019
+Kazakhstan,Eastern Europe,0.75,0.65,0.84,0.75,0.64,0.84,KAZ,2021,4.028,25361.508,19743607,Asia,2021,2015,2020,2020
+Russia,Eastern Europe,0.61,0.59,0.64,0.57,0.53,0.6,RUS,2021,3.827,26586.555,145836172,Europe,2021,2015,2020,2020
+Ukraine,Eastern Europe,0.61,0.51,0.71,0,0,0,0,0,0,0,0,0,0,0,0,0
+Uzbekistan,Eastern Europe,0.92,0.87,0.96,0.89,0.83,0.95,0,0,0,0,0,0,0,0,0,0
+Czech Republic,Former Soviet Republics,0.81,0.75,0.87,0,0,0,CZE,2021,5.469,40744.457,10530683,Europe,2021,2015,2021,2021
+Estonia,Former Soviet Republics,0.28,0.25,0.31,0.25,0.2,0.3,EST,2021,3.863,35883.266,1331750,Europe,2021,2015,2020,2020
+Hungary,Former Soviet Republics,0.39,0.36,0.41,0.39,0.36,0.41,HUN,2021,3.291,33583.785,9707848,Europe,2021,2015,2021,2021
+Poland,Former Soviet Republics,0.43,0.39,0.47,0.35,0.31,0.39,POL,2021,3.714,32546.826,38040304,Europe,2021,2015,2020,2020
+Brazil,America,0.6,0.58,0.62,0.6,0.58,0.62,BRA,2021,2.142,14735.582,209550291,South America,2021,2015,2021,2021
+Chile,America,0.56,0.5,0.62,0.56,0.5,0.62,CHL,2021,2.973,25412.752,19456323,South America,2021,2015,2021,2021
+Colombia,America,0.8,0.73,0.87,0.8,0.73,0.87,COL,2021,2.362,14661.213,51188174,South America,2021,2015,2021,2021
+Mexico,America,0.48,0.44,0.52,0.48,0.44,0.52,MEX,2021,2.441,18639.662,127648152,North America,2021,2015,2020,2020
+Uruguay,America,0.65,0.59,0.71,0.65,0.59,0.71,URY,2021,6.2,23257.256,3396692,South America,2021,2015,2021,2021
+Canada,America,0.59,0.44,0.74,0.59,0.44,0.74,CAN,2021,2.464,48356.332,38454058,North America,2021,2015,2021,2021
+United States,America,0.36,0.33,0.39,0.53,0.47,0.58,USA,2021,3.555,60158.91,340161441,North America,2021,2015,2020,2020
+Cyprus,Middle East,0.16,0.15,0.18,0.16,0.15,0.18,CYP,2021,5.375,43417.27,1317312,Europe,2021,2015,2021,2021
+Iraq,Middle East,0.93,0.88,0.98,0.93,0.88,0.98,IRQ,2021,0.913,8848.118,43071210,Asia,2021,2015,2020,2020
+Israel,Middle East,0.89,0.88,0.91,0.9,0.88,0.92,ISR,2021,3.654,42379.156,8942925,Asia,2021,2015,2021,2021
+Jordan,Middle East,0.56,0.48,0.64,0.43,0.29,0.57,JOR,2021,2.513,9534.661,11066358,Asia,2021,2015,2019,2019
+Kuwait,Middle East,0.56,0.5,0.62,0.5,0.43,0.57,KWT,2021,2.293,43922.63,4360749,Asia,2021,2015,2020,2020
+Lebanon,Middle East,0.78,0.69,0.87,0.78,0.69,0.87,LBN,2021,2.617,17185.047,5718127,Asia,2021,2015,2019,2019
+Oman,Middle East,0.96,0.95,0.97,0.96,0.95,0.97,OMN,2021,1.994,33098.21,4500427,Asia,2021,2015,2020,2020
+Saudi Arabia,Middle East,0.28,0.25,0.31,0.23,0.19,0.26,SAU,2021,2.789,46768.434,31328374,Asia,2021,2015,2021,2021
+Syria,Middle East,0.95,0.93,0.98,0.97,0.94,1,0,0,0,0,0,0,0,0,0,0
+Turkey,Middle East,0.69,0.66,0.71,0.65,0.61,0.69,TUR,2021,2.036,28726.191,86686255,Asia,2021,2015,2020,2020
+Yemen,Middle East,1,0.99,1,1,0.99,1,0,0,0,0,0,0,0,0,0,0
+Algeria,Northern Africa,0.62,0.54,0.7,0.61,0.49,0.73,DZA,2021,1.732,11725.878,44761101,Africa,2021,2015,2018,2018
+Egypt,Northern Africa,0.68,0.66,0.71,0.42,0.35,0.49,EGY,2021,0.709,11780.962,110957004,Africa,2021,2015,2019,2019
+Morocco,Northern Africa,0.73,0.69,0.77,0.73,0.68,0.79,0,0,0,0,0,0,0,0,0,0
+Tunisia,Northern Africa,0.84,0.73,0.95,0,0,0,0,0,0,0,0,0,0,0,0,0
+Western Sahara,Northern Africa,0.53,0.41,0.65,0.53,0.41,0.65,0,0,0,0,0,0,0,0,0,0
+Angola,"Africa (southern, eastern, western)",0.94,0.91,0.97,0.94,0.91,0.97,AGO,2021,0.211,6878.59,34532427,Africa,2021,2015,2018,2018
+Botswana,"Africa (southern, eastern, western)",0.88,0.78,0.98,0.85,0.7,1,BWA,2021,0.348,14961.831,2401449,Africa,2021,2015,2018,2018
+Cameroon,"Africa (southern, eastern, western)",0.89,0.87,0.91,0.95,0.93,0.96,CMR,2021,0.124,3689.359,26915764,Africa,2021,2015,2021,2021
+Democratic Republic of the Congo,"Africa (southern, eastern, western)",1,1,1,0,0,0,COD,2021,0.362,1048.2465,99148931,Africa,2021,2015,2018,2018
+Ethiopia,"Africa (southern, eastern, western)",0.77,0.75,0.79,0.81,0.79,0.83,ETH,2021,0.104,2253.2358,122138590,Africa,2021,2015,2020,2020
+Gabon,"Africa (southern, eastern, western)",0.93,0.88,0.98,0,0,0,GAB,2021,0.594,13903.289,2376728,Africa,2021,2015,2020,2020
+Ghana,"Africa (southern, eastern, western)",1,1,1,0,0,0,GHA,2021,0.164,5263.5264,32518662,Africa,2021,2015,2020,2020
+Kenya,"Africa (southern, eastern, western)",0.39,0.34,0.43,0.39,0.34,0.43,KEN,2021,0.226,4745.637,53219165,Africa,2021,2015,2021,2021
+Malawi,"Africa (southern, eastern, western)",1,1,1,0,0,0,MWI,2021,0.049,1489.6014,20047263,Africa,2021,2015,2020,2020
+Mozambique,"Africa (southern, eastern, western)",0.95,0.93,0.98,0.97,0.94,1,MOZ,2021,0.081,1231.8641,31707797,Africa,2021,2015,2021,2021
+Namibia,"Africa (southern, eastern, western)",0.93,0.89,0.96,0.87,0.8,0.94,NAM,2021,0.601,10266.171,2810553,Africa,2021,2015,2018,2018
+Niger,"Africa (southern, eastern, western)",0.13,0.07,0.19,0.13,0.07,0.19,NER,2021,0.034,1214.541,24502144,Africa,2021,2015,2020,2020
+Nigeria,"Africa (southern, eastern, western)",0.87,0.81,0.93,0,0,0,NGA,2021,0.395,4922.6323,218529285,Africa,2021,2015,2021,2021
+Republic of Congo,"Africa (southern, eastern, western)",0.93,0.88,0.98,0,0,0,COG,2021,0.1,4144.949,5892186,Africa,2021,2015,2018,2018
+Rwanda,"Africa (southern, eastern, western)",0.49,0.39,0.59,0.49,0.39,0.59,RWA,2021,0.116,2190.562,13355260,Africa,2021,2015,2019,2019
+Senegal,"Africa (southern, eastern, western)",0.79,0.76,0.82,0,0,0,SEN,2021,0.084,3384.442,17220866,Africa,2021,2015,2020,2020
+Somalia,"Africa (southern, eastern, western)",0.94,0.88,0.99,0.94,0.88,0.99,0,0,0,0,0,0,0,0,0,0
+South Africa,"Africa (southern, eastern, western)",0.81,0.77,0.84,0.77,0.72,0.81,ZAF,2021,0.809,13337.79,61502601,Africa,2021,2015,2021,2021
+Sudan,"Africa (southern, eastern, western)",0.55,0.53,0.57,0.53,0.5,0.55,0,0,0,0,0,0,0,0,0,0
+Tanzania,"Africa (southern, eastern, western)",0.45,0.41,0.49,0.45,0.41,0.49,TZA,2021,0.05,2511.8293,62830413,Africa,2021,2015,2018,2018
+Uganda,"Africa (southern, eastern, western)",0.87,0.8,0.94,0.91,0.85,0.98,UGA,2021,0.158,2240.4902,45910932,Africa,2021,2015,2020,2020
+Zambia,"Africa (southern, eastern, western)",1,1,1,0,0,0,ZMB,2021,0.297,3287.4204,19603610,Africa,2021,2015,2021,2021
+Austria,"Europe (western, southern, northern)",0.22,0.19,0.25,0.22,0.19,0.25,AUT,2021,5.459,53817.305,8967053,Europe,2021,2015,2021,2021
+Belgium,"Europe (western, southern, northern)",0.15,0.13,0.17,0.15,0.13,0.17,BEL,2021,6.257,52174.906,11570842,Europe,2021,2015,2021,2021
+Denmark,"Europe (western, southern, northern)",0.04,0,0.09,0.04,0,0.09,DNK,2021,4.264,56813.965,5856773,Europe,2021,2015,2019,2019
+Finland,"Europe (western, southern, northern)",0.19,0.18,0.2,0.19,0.18,0.2,FIN,2021,4.325,47371.22,5541068,Europe,2021,2015,2020,2020
+France,"Europe (western, southern, northern)",0.36,0.32,0.39,0.25,0.17,0.33,FRA,2021,3.324,42344.945,66083547,Europe,2021,2015,2020,2020
+Germany,"Europe (western, southern, northern)",0.16,0.15,0.18,0.16,0.15,0.18,DEU,2021,4.518,53395.65,83697082,Europe,2021,2015,2021,2021
+Greece,"Europe (western, southern, northern)",0.55,0.52,0.59,0.75,0.7,0.79,GRC,2021,6.306,27009.207,10579561,Europe,2021,2015,2020,2020
+Ireland,"Europe (western, southern, northern)",0.04,-0.01,0.09,0.04,-0.01,0.09,IRL,2021,4.062,104671.875,5028430,Europe,2021,2015,2021,2021
+Italy,"Europe (western, southern, northern)",0.72,0.71,0.74,0.72,0.7,0.74,ITA,2021,4.126,42562.555,59729354,Europe,2021,2015,2021,2021
+Netherlands,"Europe (western, southern, northern)",0.12,0.11,0.12,0.1,0.1,0.11,NLD,2021,3.836,54275.004,17730564,Europe,2021,2015,2020,2020
+Norway,"Europe (western, southern, northern)",0.12,0.08,0.16,0.12,0.08,0.16,NOR,2021,5.168,65915.53,5408081,Europe,2021,2015,2021,2021
+Portugal,"Europe (western, southern, northern)",0.4,0.33,0.47,0.4,0.33,0.47,PRT,2021,5.615,32011.324,10390956,Europe,2021,2015,2020,2020
+Spain,"Europe (western, southern, northern)",0.29,0.27,0.31,0.28,0.25,0.32,ESP,2021,4.577,36051.418,47735670,Europe,2021,2015,2020,2020
+Sweden,"Europe (western, southern, northern)",0.07,0.04,0.09,0.07,0.04,0.09,SWE,2021,7.062,51331.28,10416136,Europe,2021,2015,2020,2020
+United Kingdom,"Europe (western, southern, northern)",0.08,0.07,0.09,0.08,0.08,0.09,GBR,2021,3.171,45567.57,67668789,Europe,2021,2015,2021,2021
