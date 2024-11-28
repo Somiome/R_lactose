@@ -65,3 +65,55 @@ ggplot(data_total, aes(x = Year, y = Total_Consumption, fill = Product)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))  # x축 텍스트 기울이기
 
+
+
+#유당함량이 높은 시유 그룹과 유당함량이 적은 발효유 및 자연치즈 그룹룹 그리고 
+#제품에 따라 상이한 가공치즈끼리 묶은 그래프
+
+
+
+library(dplyr)
+
+# 새로운 그룹 생성
+data_long1 <- data_long %>%
+  mutate(Group = case_when(
+    Product %in% c("백색시유 소비량", "가공시유 소비량") ~ "시유",
+    Product %in% c("액상발효유 소비량", "호상발효유 소비량", "자연치즈 소비량") ~ "발효유 및 자연치즈",
+    Product == "가공치즈 소비량" ~ "가공치즈",
+    TRUE ~ "기타" # 예외 처리용
+  ))
+
+
+# 그룹별 연도별 소비량 합산
+data_grouped <- data_long1 %>%
+  group_by(Year, Group) %>%
+  summarize(Total_Consumption = sum(Consumption, na.rm = TRUE)) %>%
+  ungroup()
+
+# 결과 확인
+head(data_grouped)
+
+
+
+# 그룹별 축적 막대그래프 그리기
+ggplot(data_grouped, aes(x = Year, y = Total_Consumption, fill = Group)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Grouped Dairy Product Consumption by Year",
+       x = "Year",
+       y = "Total Consumption",
+       fill = "Group") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # x축 텍스트 기울이기
+
+
+
+
+
+
+
+
+
+
+
+
+
