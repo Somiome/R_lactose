@@ -9,7 +9,7 @@ library(ggcorrplot)
 data <- read.csv("./data/FAOSTAT_data_en_10-29-2024.csv")
 
 # Filter Calories/Year data
-Calories/Year_data <- data[data$Element == "Calories/Year", ]
+Calories_Year_data <- data[data$Element == "Calories/Year", ]
 
 # Read the lactose intolerance data
 lactose_data <- read_excel("./data/12862_2009_1252_MOESM1_ESM.XLS", col_names = FALSE)
@@ -37,11 +37,11 @@ lactose_country <- lactose_data %>%
   summarise(Lactose_Intolerance_Rate = mean(Lactose_Intolerance_Rate, na.rm = TRUE))
 
 # Prepare Calories/Year_data
-Calories/Year_country <- Calories/Year_data %>%
+Calories_Year_country <- Calories_Year_data %>%
   select(Area, Value)
 
 # Standardize country names and get ISO3 country codes
-Calories/Year_country <- Calories/Year_country %>%
+Calories_Year_country <- Calories_Year_country %>%
   mutate(
     CountryCode = countrycode(Area, 'country.name', 'iso3c')
   ) %>%
@@ -54,7 +54,7 @@ lactose_country <- lactose_country %>%
   filter(!is.na(CountryCode))
 
 # Merge the datasets on CountryCode
-merged_data <- merge(Calories/Year_country, lactose_country, by = "CountryCode")
+merged_data <- merge(Calories_Year_country, lactose_country, by = "CountryCode")
 
 # Get the list of unique CountryCodes
 country_codes <- unique(merged_data$CountryCode)
@@ -141,6 +141,8 @@ population_2023 <- population_2023 %>%
 merged_data <- merged_data %>%
   left_join(population_2023[, c('CountryCode', 'Population')], by = 'CountryCode')
 
+colnames(merged_data)
+
 # Remove rows with missing Population
 merged_data <- merged_data %>%
   filter(!is.na(Population))
@@ -148,19 +150,21 @@ merged_data <- merged_data %>%
 # Calculate Calories/Year per Capita
 merged_data <- merged_data %>%
   mutate(
-    Calories/Year_per_Capita = Value / Population
+    Calories_Year_per_Capita = Value / Population
   )
 
 # Step 3: Prepare data for regression
 
 # Update regression model to use Calories/Year_per_Capita
-model <- lm(Calories/Year_per_Capita ~ Log_GDP + Lactose_Intolerance_Rate + Human_Development_Index, data = merged_data)
+model <- lm(Calories_Year_per_Capita ~ Log_GDP + Lactose_Intolerance_Rate + Human_Development_Index, data = merged_data)
 
 # Output the summary of the regression model
 print(summary(model))
 
+colnames(merged_data)
+
 # Update correlation matrix to include Calories/Year_per_Capita
-correlation_matrix <- cor(merged_data[, c("Calories/Year_per_Capita", "Log_GDP", "Lactose_Intolerance_Rate", "Human_Development_Index")], use = "complete.obs")
+correlation_matrix <- cor(merged_data[, c("Calories_Year_per_Capita", "Log_GDP", "Lactose_Intolerance_Rate", "Human_Development_Index")], use = "complete.obs")
 print("Correlation Matrix:")
 print(correlation_matrix)
 
@@ -182,7 +186,7 @@ ggplot(merged_data, aes(x = Human_Development_Index, y = Calories/Year_per_Capit
        y = "Calories/Year per Capita")
 
 # Scatter plot of Calories/Year per Capita vs. Log of GDP
-ggplot(merged_data, aes(x = Log_GDP, y = Calories/Year_per_Capita)) +
+ggplot(merged_data, aes(x = Log_GDP, y = Calories_Year_per_Capita)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
   labs(title = "Calories/Year per Capita vs. Log of GDP",
@@ -190,9 +194,10 @@ ggplot(merged_data, aes(x = Log_GDP, y = Calories/Year_per_Capita)) +
        y = "Calories/Year per Capita")
 
 # Scatter plot of Calories/Year per Capita vs. Lactose Intolerance Rate
-ggplot(merged_data, aes(x = Lactose_Intolerance_Rate, y = Calories/Year_per_Capita)) +
+ggplot(merged_data, aes(x = Lactose_Intolerance_Rate, y = Calories_Year_per_Capita)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "blue") +
   labs(title = "Calories/Year per Capita vs. Lactose Intolerance Rate",
        x = "Lactose Intolerance Rate",
        y = "Calories/Year per Capita")
+
