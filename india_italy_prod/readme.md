@@ -1,8 +1,10 @@
-# Case Study: India and Italy
+# Case Study: India
 
 ## India
 
 India have about 65% of lactose intolerance, however it has the largest domestic consumption of fluid milk of 87MMT from 2023. The trend is everso growing since.
+
+Northern Indians have lower lactose intolerance rate, averaging about 1/3 of population while southern indians have higher rate with 2/3 of population being affected.
 
 ![India Domestic Consumption from 2019-2023](./domestic_consump.png)
 
@@ -20,4 +22,12 @@ Comparing the numbers, the domestic consumption of dairy milk is almost identica
 
 ![India Milk Chain](./Rplot.png)
 
-### Dairy Products
+### Secondary Products
+
+India is also the largest producer in butter industry, accounting for 6750000MT in 2023
+
+![Global Production 2023](./global_butter_prod.png)
+
+### Conclusion
+
+Considering the large populations being affected by lactose intolerance, the consumption is still growing. It is stated that historically india didn't have culture of consuming unfermented dairy product, but modern India consume large quantity regardless. There have been recent awareness of lactose intolerance and the market is growing for lactose-free products.
