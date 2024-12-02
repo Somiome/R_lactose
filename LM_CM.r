@@ -1,16 +1,3 @@
-# install.package('ggplot2')
-# install.package('dplyr')
-# install.package('tidyr')
-# install.packages('ggbreak')
-# install.packages('sf')
-# install.packages('rnaturalearth')
-# install.packages('rnaturalearthdata')
-# install.packages('ggcorrplot')
-# install.packages('Hmisc')
-# install.packages("rpart")
-# install.packages("rpart.plot")
-# install.packages("randomForest")
-
 library(ggplot2)
 library(dplyr)
 library(tidyr)
@@ -18,6 +5,7 @@ library(ggbreak)
 library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
+library(nlme)
 library(ggcorrplot)
 library(Hmisc)
 library(rpart)
@@ -33,7 +21,7 @@ library(randomForest)
 
 # *****************************************************************************
 # A. Load LM data
-## LM: lactose malabsorption prevalence data per country
+## LM.csv: lactose malabsorption prevalence data per country
 ## LMP: Lactose Malabsorption Prevalence
 ## Columns info.
 ##  Country: country names
@@ -53,7 +41,7 @@ head(LM)
 
 # *****************************************************************************
 # B. Load CM data
-## CM: cattle milk data per country
+## FAOSTAT_data_en_11-8-2024 (1).csv: cattle milk data by country
 ## Columns info.
 ##  Area: name of each country
 ##  Element: Production, Import quantity, Food supply quantity, Calories/Year
@@ -70,6 +58,7 @@ head(LM)
 
 cattle_milk <- read.csv('FAOSTAT_data_en_11-8-2024 (1).csv', header = T, sep = ',')
 CM <- cattle_milk[,c(4,6,10,11,12)] # exclude columns that are out of interest
+head(CM)
 
 CM_tidy <- CM %>%
   pivot_wider(
@@ -77,11 +66,13 @@ CM_tidy <- CM %>%
     values_from = Value
   )
 CM_tidy_tmp <- split(CM_tidy, CM_tidy$Element)
+head(CM_tidy_tmp)
 
 CM_cal <- as.data.frame(CM_tidy_tmp$`Calories/Year`)
 CM_fsq <- as.data.frame(CM_tidy_tmp$`Food supply quantity (g/capita/day)`)
 head(CM_cal)
 head(CM_fsq)
+
 
 # *****************************************************************************
 # C. Unify each country name
@@ -142,6 +133,10 @@ ncol(CM_fsq)
 CM_fsq[,17] = apply(CM_fsq[,c(4:16)], 1, function(x){mean(x, na.rm=T)})
 colnames(CM_fsq)[17] = 'Mean'
 
+# write.csv(LM, 'LM_processed.csv')
+# write.csv(CM_cal, 'CM_cal_processed.csv')
+# write.csv(CM_fsq, 'CM_fsq_processed.csv')
+
 # *****************************************************************************
 # E. Load data for correlation/regression analysis later
 ## pop_under15: population of 0-14 years old
@@ -152,22 +147,18 @@ colnames(CM_fsq)[17] = 'Mean'
 ## health_exp: health expenditure
 ## life_exp: life expectancy
 ## mon_temper: monthly average surface temperature by year
-## soy_prod: soybean production
 
-pop_under15 <- read.csv('LM_df_0_15_population.csv', header = T, sep = ',')
-pop_under65 <- read.csv('LM_df_15_65_population.csv', header = T, sep = ',')
-pop_above65_rate <- read.csv('LM_df_65_ratio_population.csv', header = T, sep = ',')
-agr_land_perc <- read.csv('LM_df_Agricultural_Land.csv', header = T, sep = ',')
-doc_and_gdp <- read.csv('LM_df_medical_doctors_per_1000_people_vs_gdp_per_capita.csv',
+pop_under15 <- read.csv('./data fixed/가설1 인구수/LM_df_0_15_population.csv', header = T, sep = ',')
+pop_under65 <- read.csv('./data fixed/가설1 인구수/LM_df_15_65_population.csv', header = T, sep = ',')
+pop_above65_rate <- read.csv('./data fixed/가설1 인구수/LM_df_65_ratio_population.csv', header = T, sep = ',')
+agr_land_perc <- read.csv('./data fixed/가설2 토지이용도/LM_df_Agricultural_Land.csv', header = T, sep = ',')
+doc_and_gdp <- read.csv('./data fixed/가설3 의료접근성/LM_df_medical_doctors_per_1000_people_vs_gdp_per_capita.csv',
                         header = T, sep = ',')
-health_exp <- read.csv('wide_format_file_health_expenditure.csv',
+health_exp <- read.csv('./data fixed/가설3 의료접근성/wide_format_file_healthcare_expenditure_vs_GDP.csv',
                             header = T, sep = ',')
-life_exp <- read.csv('wide_LM_df_life_expectancy.csv', header = T, sep = ',')
-mon_temper <- read.csv('LM_df_monthly_average_surface_temperatures_by_year.csv',
+life_exp <- read.csv('./data fixed/가설3 의료접근성/wide_LM_df_life_expectancy.csv', header = T, sep = ',')
+mon_temper <- read.csv('./data fixed/가설4 기온/LM_df_monthly_average_surface_temperatures_by_year.csv',
                        header = T, sep = ',')
-soy_prod <- read.csv('LM_df_soybean_production_by_country_2024.csv',
-                     header = T, sep = ',')
-
 
 ##############################################################################
 #                         2. Exploratory data analysis                       #
@@ -360,66 +351,49 @@ ggplot(data = map_data_cm_fsq) +
 ##############################################################################
 #                              3. Correlation test                           #
 ##############################################################################
+# A. LMP & CM_cal
+LM_CM_cal_long <- LM_CM_cal %>%
+  pivot_longer(cols = starts_with("20"),
+               names_to = "Year",
+               values_to = "CM_cal") %>%
+  mutate(Year = as.integer(Year))
 
-# A. LMP & CM_cal(Mean)
-lm(LM_CM_cal$Mean ~ LM_CM_cal$Preval_primary)
-cor(LM_CM_cal$Mean, LM_CM_cal$Preval_primary) #-0.05720739
+lm_model <- lm(CM_cal ~ Preval_primary, data = LM_CM_cal_long)
+summary(lm_model)
 
-ggplot(LM_CM_cal, aes(x = Mean, y = Preval_primary)) +
-  geom_point(aes(color = Mean)) +
-  geom_smooth(method = "lm", color = "violetred2", se = FALSE) +
-  scale_color_viridis_c(option = "plasma") +
-  labs(
-    title = "Correlation b/n LMP and CM calories/year",
-    x = "Mean of Cattle Milk Calories/Year",
-    y = "LMP"
-  ) +
+ggplot(LM_CM_cal_long, aes(x = Preval_primary, y = CM_cal)) +
+  geom_point(aes(color = factor(Year))) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  labs(title = "Cattle Milk Calories vs Prevalence of Lactose Malabsorption",
+       x = "Prevalence of Lactose Malabsorption (Primary)",
+       y = "Cattle Milk Calories per Year",
+       color = "Year") +
   theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-ggplot(LM_CM_cal, aes(x = Mean, y = Preval_primary)) +
-  geom_point(aes(color = Mean)) +
-  geom_smooth(method = "lm", color = "violetred2", se = FALSE) +
-  scale_x_break(c(5e+06, 6e+07), scales = 0.1) +
-  scale_color_viridis_c(option = "plasma") +
-  labs(
-    title = "Correlation b/n LMP and CM calories/year",
-    x = "Mean of Cattle Milk Calories/Year",
-    y = "LMP"
-  ) +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
+  scale_y_break(c(5.0e+06, 6.9e+07))
 
 
 # *****************************************************************************
-# B. LMP & CM_fsq(Mean)
-lm(LM_CM_fsq$Mean ~ LM_CM_fsq$Preval_primary)
-cor(LM_CM_fsq$Mean, LM_CM_fsq$Preval_primary) #-0.1940693
+# B. LMP & CM_fsq
+LM_CM_fsq_long <- LM_CM_cal %>%
+  pivot_longer(cols = starts_with("20"),
+               names_to = "Year",
+               values_to = "CM_fsq") %>%
+  mutate(Year = as.integer(Year))
 
-ggplot(LM_CM_fsq, aes(x = Mean, y = Preval_primary)) +
-  geom_point(aes(color = Mean)) +
-  geom_smooth(method = "lm", color = "royalblue", se = FALSE) +
-  scale_color_viridis_c(option = "cividis") +
+lm_model_fsq <- lm(CM_fsq ~ Preval_primary, data = LM_CM_fsq_long)
+summary(lm_model_fsq)
+
+ggplot(LM_CM_fsq_long, aes(x = Preval_primary, y = CM_fsq)) +
+  geom_point(aes(color = factor(Year))) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
   labs(
-    title = "Correlation b/n LMP and CM Food Supply Quantity",
-    x = "Mean of Cattle Milk Food Supply Quantity",
-    y = "LMP"
+    title = "Cattle Milk Food Supply Quantity vs Prevalence of Lactose Malabsorption",
+    x = "Prevalence of Lactose Malabsorption (Primary)",
+    y = "Cattle Milk Food Supply Quantity per Year",
+    color = "Year"
   ) +
   theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-ggplot(LM_CM_fsq, aes(x = Mean, y = Preval_primary)) +
-  geom_point(aes(color = Mean)) +
-  geom_smooth(method = "lm", color = "royalblue", se = FALSE) +
-  scale_x_break(c(400, 600), scales = 0.1) +
-  scale_color_viridis_c(option = "cividis") +
-  labs(
-    title = "Correlation b/n LMP and CM Food Supply Quantity",
-    x = "Mean of Cattle Milk Food Supply Quantity",
-    y = "LMP"
-  ) +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
+  scale_y_break(c(5.0e+06, 71500000))
 
 
 # *****************************************************************************
@@ -459,6 +433,7 @@ life_exp = life_exp[-which(life_exp$Country == 'Republic of Congo' |
 LM_corr$'life_exp' <- apply(life_exp[,10:71], 1, function(x){mean(x, na.rm = T)})
 
 temp <- split(mon_temper, mon_temper$Month)
+
 for (month in names(temp)[-1]) {
   current_data <- temp[[month]]
   current_data$Mean <- apply(current_data[, 11:85], 1, function(x) mean(x, na.rm = TRUE))
@@ -475,11 +450,12 @@ for (month in names(temp)[-1]) {
 LM_corr$'avg_temp' <- apply(LM_corr[, 15:26], 1, function(x) mean(x, na.rm = TRUE))
 head(LM_corr)
 
-## soy_prod -> 37/89 (41%, 0)
-
 ## corr.
 LM_corr$'CM_cal_mean' <- LM_CM_cal$Mean
 LM_corr$'CM_fsq_mean' <- LM_CM_fsq$Mean
+
+# write.csv(LM_corr, 'LM_corr.csv')
+
 
 corr_vec_CM_cal = c()
 corr_vec_CM_fsq = c()
@@ -553,10 +529,3 @@ plot(tree_fit2)
 text(tree_fit2)
 summary(tree_fit2)
 
-
-
-
-mon_temper <- read.csv('LM_df_monthly_average_surface_temperatures_by_year.csv',
-                       header = T, sep = ',')
-soy_prod <- read.csv('LM_df_soybean_production_by_country_2024.csv',
-                     header = T, sep = ',')
