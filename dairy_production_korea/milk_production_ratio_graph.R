@@ -1,7 +1,7 @@
 library(ggplot2)
 library(tidyverse)
 
-data <- read.csv("C:/Users/82104/OneDrive/바탕 화면/R프로그래밍/한국 우유 소비 비율/일반개황.csv", 
+data <- read.csv("./data/일반개황.csv", 
                  fileEncoding = "EUC-KR")
 
 # 데이터 전치
@@ -67,7 +67,7 @@ ggplot(data_total, aes(x = Year, y = Total_Consumption, fill = Product)) +
 
 
 
-#유당함량이 높은 시유 그룹과 유당함량이 적은 발효유 및 자연치즈 그룹룹 그리고 
+#유당함량이 높은 시유 그룹과 유당함량이 적은 발효유 및 자연치즈 그룹 그리고 
 #제품에 따라 상이한 가공치즈끼리 묶은 그래프
 
 
