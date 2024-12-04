@@ -11,6 +11,7 @@ library(Hmisc)
 library(rpart)
 library(rpart.plot)
 library(randomForest)
+library(ggrepel)
 
 ##############################################################################
 #                          1. Data Pre-processing                            #
@@ -136,29 +137,6 @@ colnames(CM_fsq)[17] = 'Mean'
 # write.csv(LM, 'LM_processed.csv')
 # write.csv(CM_cal, 'CM_cal_processed.csv')
 # write.csv(CM_fsq, 'CM_fsq_processed.csv')
-
-# *****************************************************************************
-# E. Load data for correlation/regression analysis later
-## pop_under15: population of 0-14 years old
-## pop_under65: population of 15-65 years old
-## pop_above65_rate: population rate of >= 65 years old
-## agr_land_perc: percentage of agricultural land use
-## doc_and_gdp: # of physicians and GDP
-## health_exp: health expenditure
-## life_exp: life expectancy
-## mon_temper: monthly average surface temperature by year
-
-pop_under15 <- read.csv('./data fixed/가설1 인구수/LM_df_0_15_population.csv', header = T, sep = ',')
-pop_under65 <- read.csv('./data fixed/가설1 인구수/LM_df_15_65_population.csv', header = T, sep = ',')
-pop_above65_rate <- read.csv('./data fixed/가설1 인구수/LM_df_65_ratio_population.csv', header = T, sep = ',')
-agr_land_perc <- read.csv('./data fixed/가설2 토지이용도/LM_df_Agricultural_Land.csv', header = T, sep = ',')
-doc_and_gdp <- read.csv('./data fixed/가설3 의료접근성/LM_df_medical_doctors_per_1000_people_vs_gdp_per_capita.csv',
-                        header = T, sep = ',')
-health_exp <- read.csv('./data fixed/가설3 의료접근성/wide_format_file_healthcare_expenditure_vs_GDP.csv',
-                            header = T, sep = ',')
-life_exp <- read.csv('./data fixed/가설3 의료접근성/wide_LM_df_life_expectancy.csv', header = T, sep = ',')
-mon_temper <- read.csv('./data fixed/가설4 기온/LM_df_monthly_average_surface_temperatures_by_year.csv',
-                       header = T, sep = ',')
 
 ##############################################################################
 #                         2. Exploratory data analysis                       #
@@ -349,7 +327,7 @@ ggplot(data = map_data_cm_fsq) +
   )
 
 ##############################################################################
-#                              3. Correlation test                           #
+#                              3. Regression                                 #
 ##############################################################################
 # A. LMP & CM_cal
 LM_CM_cal_long <- LM_CM_cal %>%
@@ -358,174 +336,507 @@ LM_CM_cal_long <- LM_CM_cal %>%
                values_to = "CM_cal") %>%
   mutate(Year = as.integer(Year))
 
-lm_model <- lm(CM_cal ~ Preval_primary, data = LM_CM_cal_long)
-summary(lm_model)
+data_for_regression <- LM_CM_cal_long %>%
+  select(Year, CM_cal, Preval_primary) %>%
+  filter(!is.na(CM_cal) & !is.na(Preval_primary))
 
-ggplot(LM_CM_cal_long, aes(x = Preval_primary, y = CM_cal)) +
-  geom_point(aes(color = factor(Year))) +
-  geom_smooth(method = "lm", color = "red", se = FALSE) +
-  labs(title = "Cattle Milk Calories vs Prevalence of Lactose Malabsorption",
-       x = "Prevalence of Lactose Malabsorption (Primary)",
-       y = "Cattle Milk Calories per Year",
-       color = "Year") +
-  theme_minimal() +
-  scale_y_break(c(5.0e+06, 6.9e+07))
+data_for_regression <- data_for_regression %>%
+  filter(CM_cal > 0)
+data_for_regression$log_CM_cal <- log(data_for_regression$CM_cal)
+lm_model_log <- lm(log_CM_cal ~ Year + Preval_primary, data = data_for_regression)
+summary(lm_model_log)
+plot_ly(data_for_regression, x = ~Year, y = ~Preval_primary, z = ~log_CM_cal,
+        type = "scatter3d", mode = "markers", color = ~Preval_primary) %>%
+  layout(title = "3D Scatter: Year, Prevalence, and Log of Cattle Milk Calories",
+         scene = list(xaxis = list(title = "Year"),
+                      yaxis = list(title = "Prevalence of Lactose Malabsorption"),
+                      zaxis = list(title = "Log of Cattle Milk Calories")))
+
+ggplot(data_for_regression, aes(x = Year, y = log_CM_cal)) +
+  geom_point(alpha = 0.6) + 
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(title = "Year vs Log of Cattle Milk Calories (log_CM_cal)", 
+       x = "Year", 
+       y = "Log of Cattle Milk Calories (log_CM_cal)") +
+  theme_minimal()
+ggplot(data_for_regression, aes(x = Preval_primary, y = log_CM_cal)) +
+  geom_point(alpha = 0.6) + 
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Prevalence of Lactose Malabsorption vs Log of Cattle Milk Calories (log_CM_cal)", 
+       x = "Prevalence of Lactose Malabsorption (Preval_primary)", 
+       y = "Log of Cattle Milk Calories (log_CM_cal)") +
+  theme_minimal()
+
 
 
 # *****************************************************************************
 # B. LMP & CM_fsq
-LM_CM_fsq_long <- LM_CM_cal %>%
+LM_CM_fsq_long <- LM_CM_fsq %>%
   pivot_longer(cols = starts_with("20"),
                names_to = "Year",
                values_to = "CM_fsq") %>%
   mutate(Year = as.integer(Year))
 
-lm_model_fsq <- lm(CM_fsq ~ Preval_primary, data = LM_CM_fsq_long)
+data_for_regression_fsq <- LM_CM_fsq_long %>%
+  select(Year, CM_fsq, Preval_primary) %>%
+  filter(!is.na(CM_fsq) & !is.na(Preval_primary))
+data_for_regression_fsq <- data_for_regression_fsq %>%
+  filter(CM_fsq > 0)
+
+lm_model_fsq <- lm(CM_fsq ~ Year + Preval_primary, data = data_for_regression_fsq)
 summary(lm_model_fsq)
 
-ggplot(LM_CM_fsq_long, aes(x = Preval_primary, y = CM_fsq)) +
-  geom_point(aes(color = factor(Year))) +
-  geom_smooth(method = "lm", color = "red", se = FALSE) +
-  labs(
-    title = "Cattle Milk Food Supply Quantity vs Prevalence of Lactose Malabsorption",
-    x = "Prevalence of Lactose Malabsorption (Primary)",
-    y = "Cattle Milk Food Supply Quantity per Year",
-    color = "Year"
-  ) +
-  theme_minimal() +
-  scale_y_break(c(5.0e+06, 71500000))
+plot_ly(data_for_regression_fsq, x = ~Year, y = ~Preval_primary, z = ~CM_fsq,
+        type = "scatter3d", mode = "markers", color = ~Preval_primary) %>%
+  layout(title = "3D Scatter: Year, Prevalence, and Cattle Milk Food Supply (CM_fsq)",
+         scene = list(xaxis = list(title = "Year"),
+                      yaxis = list(title = "Prevalence of Lactose Malabsorption"),
+                      zaxis = list(title = "Cattle Milk Food Supply (CM_fsq)")))
+
+ggplot(data_for_regression_fsq, aes(x = Year, y = CM_fsq)) +
+  geom_point(alpha = 0.6) + 
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(title = "Year vs Cattle Milk Food Supply (CM_fsq)", 
+       x = "Year", 
+       y = "Cattle Milk Food Supply (CM_fsq)") +
+  theme_minimal()
+
+ggplot(data_for_regression_fsq, aes(x = Preval_primary, y = CM_fsq)) +
+  geom_point(alpha = 0.6) + 
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Prevalence of Lactose Malabsorption vs Cattle Milk Food Supply (CM_fsq)", 
+       x = "Prevalence of Lactose Malabsorption (Preval_primary)", 
+       y = "Cattle Milk Food Supply (CM_fsq)") +
+  theme_minimal()
 
 
 # *****************************************************************************
 # C. LMP & Other factors
-## pre-processing
-LM_corr <- LM
+## pop_under15: population of 0-14 years old
+## pop_under65: population of 15-65 years old
+## pop_above65_rate: population rate of >= 65 years old
+## agr_land_perc: percentage of agricultural land use
+## doc_and_gdp: # of physicians and GDP
+## health_exp: health expenditure
+## life_exp: life expectancy
+## mon_temper: monthly average surface temperature by year
+
+# Hypothesis 1.
+pop_under15 <- read.csv('./data fixed/가설1 인구수/LM_df_0_15_population.csv', header = T, sep = ',')
+pop_under15 <- pop_under15[,c('Country',paste0('X',1960:1998))]
+
+pop_under65 <- read.csv('./data fixed/가설1 인구수/LM_df_15_65_population.csv', header = T, sep = ',')
+pop_under65 <- pop_under65[,c('Country',paste0('X',1960:1998))]
+
+year_columns <- colnames(pop_under15)[2:ncol(pop_under15)]
+pop_ratio <- data.frame(Country = pop_under15$Country)
+for (year in year_columns) {
+  under15 <- pop_under15[[year]]
+  under65 <- pop_under65[[year]]
+  
+  pop_ratio[[year]] <- (under15 / under65) * 100
+}
+head(pop_ratio)
+
+pop_above65_rate <- read.csv('./data fixed/가설1 인구수/LM_df_65_ratio_population.csv', header = T, sep = ',')
+pop_above65_rate <- pop_above65_rate[,c('Country',paste0('X',1960:1998))]
+
+# Hypothesis 2.
+agr_land_perc <- read.csv('./data fixed/가설2 토지이용도/LM_df_Agricultural_Land.csv', header = T, sep = ',')
+agr_land_perc <- agr_land_perc[,c('Country','Value')]
+
+# Hypothesis 3.
+doc_and_gdp <- read.csv('./data fixed/가설3 의료접근성/LM_df_medical_doctors_per_1000_people_vs_gdp_per_capita.csv',
+                        header = T, sep = ',')
+doc_and_gdp <- doc_and_gdp[,c(1,11:12)]
+
+health_exp <- read.csv('./data fixed/가설3 의료접근성/wide_format_file_healthcare_expenditure_vs_GDP.csv',
+                       header = T, sep = ',')
+health_exp <- health_exp[,c(1,10:31)]
+
+life_exp <- read.csv('./data fixed/가설3 의료접근성/wide_LM_df_life_expectancy.csv', header = T, sep = ',')
+life_exp <- life_exp[,c(1,10:50)]
+
+# Hypothesis 4.
+mon_temper <- read.csv('./data fixed/가설4 기온/LM_df_monthly_average_surface_temperatures_by_year.csv',
+                       header = T, sep = ',')
+mon_temper <- mon_temper[,c(1,10:50)]
+year_temp_per_mon <- split(mon_temper, mon_temper$Month)
+year_temp_per_con <- split(mon_temper, mon_temper$Country)
+
+
 
 pop_under15 = pop_under15[-which(pop_under15$Country == 'Republic of Congo' | 
                                    pop_under15$Country == 'Western Sahara'),]
-LM_corr$'pop_under15' <- apply(pop_under15[,12:75], 1, function(x){mean(x, na.rm = T)})
-
 pop_under65 = pop_under65[-which(pop_under65$Country == 'Republic of Congo' | 
                                    pop_under65$Country == 'Western Sahara'),]
-LM_corr$'pop_under65' <- apply(pop_under65[,12:75], 1, function(x){mean(x, na.rm = T)})
-
 pop_above65_rate = pop_above65_rate[-which(pop_above65_rate$Country == 'Republic of Congo' | 
                                              pop_above65_rate$Country == 'Western Sahara'),]
-LM_corr$'pop_above65_rate' <- apply(pop_above65_rate[,12:75], 1, 
-                                    function(x){mean(x, na.rm = T)})
-
 agr_land_perc = agr_land_perc[-which(agr_land_perc$Country == 'Republic of Congo' | 
                                        agr_land_perc$Country == 'Western Sahara'),]
-LM_corr$'agr_land_perc' <- agr_land_perc$Value
-
 doc_and_gdp = doc_and_gdp[-which(doc_and_gdp$Country == 'Republic of Congo' | 
                                    doc_and_gdp$Country == 'Western Sahara'),]
-LM_corr$'docs_per_1000' <- doc_and_gdp$Physicians..per.1.000.people.
-LM_corr$'GDP' <- doc_and_gdp$GDP.per.capita..PPP..constant.2017.international...
-LM_corr$'pop_hist' <- doc_and_gdp$Population..historical.
-
 health_exp = health_exp[-which(health_exp$Country == 'Republic of Congo' | 
                                  health_exp$Country == 'Western Sahara'),]
-LM_corr$'health_exp' <- apply(health_exp[,10:31], 1, function(x){mean(x, na.rm = T)})
-
+health_exp = data.frame(
+  Country = health_exp$Country,
+  X2000 = health_exp$X2000, X2001 = health_exp$X2001, X2002 = health_exp$X2002,
+  X2003 = health_exp$X2003, X2004 = health_exp$X2004, X2005 = health_exp$X2005,
+  X2006 = health_exp$X2006, X2007 = health_exp$X2007, X2008 = health_exp$X2008,
+  X2009 = health_exp$X2009, X2010 = health_exp$X2010, X2011 = health_exp$X2011,
+  X2012 = health_exp$X2012, X2013 = health_exp$X2013, X2014 = health_exp$X2014,
+  X2015 = health_exp$X2015, X2016 = health_exp$X2016, X2017 = health_exp$X2017,
+  X2018 = health_exp$X2018, X2019 = health_exp$X2019, X2020 = health_exp$X2020,
+  X2021 = health_exp$X2021
+)
 life_exp = life_exp[-which(life_exp$Country == 'Republic of Congo' | 
                              life_exp$Country == 'Western Sahara'),]
-LM_corr$'life_exp' <- apply(life_exp[,10:71], 1, function(x){mean(x, na.rm = T)})
-
-temp <- split(mon_temper, mon_temper$Month)
-
-for (month in names(temp)[-1]) {
-  current_data <- temp[[month]]
-  current_data$Mean <- apply(current_data[, 11:85], 1, function(x) mean(x, na.rm = TRUE))
-  month_name <- paste0(tolower(month.abb[as.numeric(month)]), "_tmp")
-  
-  merged_data <- merge(LM_corr, current_data[, c("Country", "Mean")], 
-                       by = "Country", all.x = TRUE)
-
-  colnames(merged_data)[ncol(merged_data)] <- paste0(tolower(month.abb[as.numeric(month)]), "_temp")
-
-  LM_corr <- merged_data
-}
-
-LM_corr$'avg_temp' <- apply(LM_corr[, 15:26], 1, function(x) mean(x, na.rm = TRUE))
-head(LM_corr)
-
-## corr.
-LM_corr$'CM_cal_mean' <- LM_CM_cal$Mean
-LM_corr$'CM_fsq_mean' <- LM_CM_fsq$Mean
-
-# write.csv(LM_corr, 'LM_corr.csv')
 
 
-corr_vec_CM_cal = c()
-corr_vec_CM_fsq = c()
-for (i in 3:29){
-  tmp1 = cor(LM_corr$CM_cal_mean, LM_corr[,i], use = 'complete.obs')
-  names(tmp1) = colnames(LM_corr)[i]
-  
-  tmp2 = cor(LM_corr$CM_fsq_mean, LM_corr[,i], use = 'complete.obs')
-  names(tmp2) = colnames(LM_corr)[i]
 
-  corr_vec_CM_cal = c(corr_vec_CM_cal, tmp1)
-  corr_vec_CM_fsq = c(corr_vec_CM_fsq, tmp2)
-}
 
-sort(corr_vec_CM_cal)
-sort(corr_vec_CM_fsq)
 
-cor_mat_LM = LM_corr[,c('Preval_primary','pop_under15','pop_under65','pop_above65_rate',
-                        'agr_land_perc','docs_per_1000','GDP','health_exp','life_exp',
-                        'avg_temp','CM_cal_mean','CM_fsq_mean')]
-plot(cor_mat_LM)
-round(cor(cor_mat_LM, use = "complete.obs"), 2)
-cor(cor_mat_LM, use = "complete.obs")
-rcorr(as.matrix(cor_mat_LM))$P
+# Child dependency ratio (pop0-15/pop15-65) PCA
+pop_data <- pop_ratio[, -1]
+row.names(pop_data) <- pop_ratio$Country
+pop_data <- na.omit(pop_data) 
+pca_res <- prcomp(pop_data, scale. = TRUE)
 
-ggcorrplot(cor(cor_mat_LM, use = "complete.obs"), 
+scree_data <- data.frame(
+  PC = paste0("PC", 1:length(pca_res$sdev)),
+  Variance = (pca_res$sdev^2) / sum(pca_res$sdev^2) * 100
+)
+
+ggplot(scree_data, aes(x = PC, y = Variance)) +
+  geom_col(fill = "steelblue") +
+  geom_text(aes(label = round(Variance, 1)), vjust = -0.5) +
+  labs(title = "Scree Plot",
+       x = "Principal Components",
+       y = "Explained Variance (%)") +
+  theme_minimal()
+
+pca_df <- data.frame(
+  Country = row.names(pop_data),
+  Group = LM[-13,]$Group,
+  PC1 = pca_res$x[, 1],
+  PC2 = pca_res$x[, 2]
+)
+
+ggplot(pca_df, aes(x = PC1, y = PC2, color = Group, label = Country)) +
+  geom_point(size = 3) + 
+  geom_text_repel(max.overlaps = 20) + 
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  labs(title = "PCA Scatter Plot: PC1 vs. PC2",
+       x = "Principal Component 1",
+       y = "Principal Component 2") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+
+
+# Population 65 ratio PCA
+pop65_data <- pop_above65_rate[, -1]
+row.names(pop65_data) <- pop_above65_rate$Country
+pop65_data <- na.omit(pop65_data) 
+pca_res2 <- prcomp(pop65_data, scale. = TRUE)
+
+scree_data2 <- data.frame(
+  PC = paste0("PC", 1:length(pca_res$sdev)),
+  Variance = (pca_res$sdev^2) / sum(pca_res$sdev^2) * 100
+)
+
+ggplot(scree_data2, aes(x = PC, y = Variance)) +
+  geom_col(fill = "steelblue") +
+  geom_text(aes(label = round(Variance, 1)), vjust = -0.5) +
+  labs(title = "Scree Plot",
+       x = "Principal Components",
+       y = "Explained Variance (%)") +
+  theme_minimal()
+
+pca_df2 <- data.frame(
+  Country = row.names(pop65_data),
+  Group = LM$Group,
+  PC1 = pca_res2$x[, 1],
+  PC2 = pca_res2$x[, 2]
+)
+
+ggplot(pca_df2, aes(x = PC1, y = PC2, color = Group, label = Country)) +
+  geom_point(size = 3) + 
+  geom_text_repel(max.overlaps = 20) + 
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  labs(title = "PCA Scatter Plot: PC1 vs. PC2",
+       x = "Principal Component 1",
+       y = "Principal Component 2") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+
+
+# Percentage of agricultural land use
+agr_land_data <- data.frame(
+   Country = agr_land_perc$Country,
+   Group = LM$Group,
+   Value = agr_land_perc$Value
+)
+ggplot(agr_land_data, aes(x = Group, y = Value, fill = Group)) +
+  geom_boxplot() +
+  scale_fill_manual(values = cols) +
+  scale_x_discrete(labels = c('AFR', 'AME', 'ASI', 'EEU', 'EUR', 'FSR', 'MIE', 'NAF', 'OCE')) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.4)
+  )
+
+
+
+
+# # of physicians and GDP per capita
+doc_gdp_data <- data.frame(
+  Country = doc_and_gdp$Country,
+  Group = LM$Group,
+  Doc_per_1000 = doc_and_gdp$Physicians..per.1.000.people.,
+  GDP_per_capita = doc_and_gdp$GDP.per.capita..PPP..constant.2017.international...
+)
+ggplot(doc_gdp_data, aes(x = Group, y = Doc_per_1000, fill = Group)) +
+  geom_boxplot() +
+  scale_fill_manual(values = cols) +
+  scale_x_discrete(labels = c('AFR', 'AME', 'ASI', 'EEU', 'EUR', 'FSR', 'MIE', 'NAF', 'OCE')) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.4)
+  )
+ggplot(doc_gdp_data, aes(x = Group, y = GDP_per_capita, fill = Group)) +
+  geom_boxplot() +
+  scale_fill_manual(values = cols) +
+  scale_x_discrete(labels = c('AFR', 'AME', 'ASI', 'EEU', 'EUR', 'FSR', 'MIE', 'NAF', 'OCE')) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.4)
+  )
+
+
+
+# healthcare expenditure PCA
+health_exp_data <- health_exp[,-1]
+rownames(health_exp_data) <- health_exp$Country
+temp <- is.na(health_exp_data)
+temp_names <- names(which(rowSums(temp) > 0))
+health_exp_data <- na.omit(health_exp_data)
+
+pca_res3 <- prcomp(health_exp_data, scale. = TRUE)
+
+scree_data3 <- data.frame(
+  PC = paste0("PC", 1:length(pca_res3$sdev)),
+  Variance = (pca_res3$sdev^2) / sum(pca_res3$sdev^2) * 100
+)
+
+ggplot(scree_data3, aes(x = PC, y = Variance)) +
+  geom_col(fill = "steelblue") +
+  geom_text(aes(label = round(Variance, 1)), vjust = -0.5) +
+  labs(title = "Scree Plot",
+       x = "Principal Components",
+       y = "Explained Variance (%)") +
+  theme_minimal()
+
+pca_df3 <- data.frame(
+  Country = row.names(health_exp_data),
+  Group = LM[-which(LM$Country %in% temp_names),]$Group,
+  PC1 = pca_res3$x[, 1],
+  PC2 = pca_res3$x[, 2]
+)
+
+ggplot(pca_df3, aes(x = PC1, y = PC2, color = Group, label = Country)) +
+  geom_point(size = 3) + 
+  geom_text_repel(max.overlaps = 20) + 
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  labs(title = "PCA Scatter Plot: PC1 vs. PC2",
+       x = "Principal Component 1",
+       y = "Principal Component 2") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+
+
+
+# life expectancy PCA
+life_exp_data <- life_exp[,-1]
+rownames(life_exp_data) <- life_exp$Country
+life_exp_data <- na.omit(life_exp_data)
+
+pca_res4 <- prcomp(life_exp_data, scale. = TRUE)
+
+scree_data4 <- data.frame(
+  PC = paste0("PC", 1:length(pca_res4$sdev)),
+  Variance = (pca_res4$sdev^2) / sum(pca_res4$sdev^2) * 100
+)
+
+ggplot(scree_data4, aes(x = PC, y = Variance)) +
+  geom_col(fill = "steelblue") +
+  geom_text(aes(label = round(Variance, 1)), vjust = -0.5) +
+  labs(title = "Scree Plot",
+       x = "Principal Components",
+       y = "Explained Variance (%)") +
+  theme_minimal()
+
+pca_df4 <- data.frame(
+  Country = row.names(life_exp_data),
+  Group = LM$Group,
+  PC1 = pca_res4$x[, 1],
+  PC2 = pca_res4$x[, 2]
+)
+
+ggplot(pca_df4, aes(x = PC1, y = PC2, color = Group, label = Country)) +
+  geom_point(size = 3) + 
+  geom_text_repel(max.overlaps = 20) + 
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  labs(title = "PCA Scatter Plot: PC1 vs. PC2",
+       x = "Principal Component 1",
+       y = "Principal Component 2") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+
+
+
+
+# year temperature
+avg_year_temp <- t(as.data.frame(lapply(year_temp_per_con, function(x) colMeans(x[,-c(1:2)]))))
+avg_year_temp <- avg_year_temp[,-1]
+
+avg_jan_temp <- select(year_temp_per_mon$`1`, -Month)
+avg_feb_temp <- select(year_temp_per_mon$`2`, -Month)
+avg_mar_temp <- select(year_temp_per_mon$`3`, -Month)
+avg_apr_temp <- select(year_temp_per_mon$`4`, -Month)
+avg_may_temp <- select(year_temp_per_mon$`5`, -Month)
+avg_jun_temp <- select(year_temp_per_mon$`6`, -Month)
+avg_jul_temp <- select(year_temp_per_mon$`7`, -Month)
+avg_agu_temp <- select(year_temp_per_mon$`8`, -Month)
+avg_sep_temp <- select(year_temp_per_mon$`9`, -Month)
+avg_oct_temp <- select(year_temp_per_mon$`10`, -Month)
+avg_nov_temp <- select(year_temp_per_mon$`11`, -Month)
+avg_dec_temp <- select(year_temp_per_mon$`12`, -Month)
+
+avg_mon_temp <- data.frame(
+  Country = avg_jan_temp$Country,
+  Jan = rowMeans(avg_jan_temp[,-1], na.rm = TRUE),
+  Feb = rowMeans(avg_feb_temp[,-1], na.rm = TRUE),
+  Mar = rowMeans(avg_mar_temp[,-1], na.rm = TRUE),
+  Apr = rowMeans(avg_apr_temp[,-1], na.rm = TRUE),
+  May = rowMeans(avg_may_temp[,-1], na.rm = TRUE),
+  Jun = rowMeans(avg_jun_temp[,-1], na.rm = TRUE),
+  Jul = rowMeans(avg_jul_temp[,-1], na.rm = TRUE),
+  Aug = rowMeans(avg_agu_temp[,-1], na.rm = TRUE),
+  Sep = rowMeans(avg_sep_temp[,-1], na.rm = TRUE),
+  Oct = rowMeans(avg_oct_temp[,-1], na.rm = TRUE),
+  Nov = rowMeans(avg_nov_temp[,-1], na.rm = TRUE),
+  Dec = rowMeans(avg_dec_temp[,-1], na.rm = TRUE)
+)
+
+
+avg_year_temp_long <- avg_year_temp %>%
+  as.data.frame() %>% 
+  mutate(Country = rownames(avg_year_temp)) %>% 
+  pivot_longer(cols = starts_with("X"), names_to = "Year", values_to = "Temperature") %>%
+  mutate(Year = as.numeric(gsub("X", "", Year)))
+
+
+ggplot(avg_year_temp_long, aes(x = Year, y = Temperature, group = Country, color = Country)) +
+  geom_line() + 
+  geom_point(data = avg_year_temp_long %>% group_by(Country) %>% filter(Year == max(Year)), 
+             aes(x = Year, y = Temperature), size = 2) +  
+  geom_text(data = avg_year_temp_long %>% group_by(Country) %>% filter(Year == max(Year)), 
+            aes(x = Year, y = Temperature, label = Country), 
+            hjust = -0.1, size = 3, check_overlap = TRUE) +  
+  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 10, ymax = 20), fill = "gray", alpha = 0.01, inherit.aes = FALSE) +
+  theme_minimal() +
+  labs(title = "Yearly Temperature Changes by Country",
+       x = "Year",
+       y = "Temperature") +
+  theme(legend.position = "none")
+
+
+avg_year_temp <- cbind(avg_year_temp, rowMeans(avg_year_temp))
+colnames(avg_year_temp)[40] <- "distance"
+
+avg_year_temp <- as.data.frame(avg_year_temp)
+avg_year_temp$distance[which(avg_year_temp$distance < 10)] <- abs(avg_year_temp$distance[which(avg_year_temp$distance < 10)] - 10)
+avg_year_temp$distance[which(avg_year_temp$distance >= 10 & avg_year_temp$distance <= 20)] <- 0
+avg_year_temp$distance[which(avg_year_temp$distance > 20)] <- abs(avg_year_temp$distance[which(avg_year_temp$distance > 20)] - 20)
+
+temp_countries <- rownames(avg_year_temp)
+temp_countries_updated <- gsub("\\.", " ", temp_countries)
+non_matching <- setdiff(temp_countries_updated, LM$Country)
+
+avg_year_temp <- avg_year_temp[!rownames(avg_year_temp) %in% c("Republic.of.Congo", "Western.Sahara"), ]
+
+avg_year_temp_data <- data.frame(
+  Country = rownames(avg_year_temp),
+  Group = LM$Group,
+  distance = avg_year_temp$distance
+)
+ggplot(avg_year_temp_data, aes(x = Group, y = distance, fill = Group)) +
+  geom_boxplot() +
+  scale_fill_manual(values = cols) +
+  scale_x_discrete(labels = c('AFR', 'AME', 'ASI', 'EEU', 'EUR', 'FSR', 'MIE', 'NAF', 'OCE')) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.4)
+  )
+
+
+
+
+
+
+
+
+CM_cal_mean = data.frame(Country = CM_cal$Area, CM_cal_mean = CM_cal$Mean)
+CM_fsq_mean = data.frame(Country = CM_fsq$Area, CM_fsq_mean = CM_fsq$Mean)
+LMP = data.frame(Country = LM$Country, LMP = LM$Preval_primary)
+GD <- read.csv('genetic_distance_from_danish.csv', sep = ',', header = T)
+GD <- GD[-c(88:65534),]
+Genetic_distance = data.frame(Country = GD$Country, Genetic_distance = GD$FST)
+pop_ratio_mean = data.frame(
+  Country = pop_ratio$Country, 
+  pop_ratio_mean = rowMeans(pop_ratio[,-1], na.rm = T)
+)
+pop_above65_rate_mean = data.frame(
+  Country = pop_above65_rate$Country,
+  pop_above65_rate_mean = rowMeans(pop_above65_rate[,-1], na.rm = T)
+)
+agr_land = data.frame(Country = agr_land_perc$Country, agr_land = agr_land_perc$Value)
+doctors = data.frame(Country = doc_and_gdp$Country, doctors = doc_and_gdp$Physicians..per.1.000.people.)
+gdp = data.frame(Country = doc_and_gdp$Country, gdp = doc_and_gdp$GDP.per.capita..PPP..constant.2017.international...)
+ht_exp = data.frame(Country = health_exp$Country, ht_exp = rowMeans(health_exp[,-1], na.rm = T))
+lf_exp = data.frame(Country = life_exp$Country, lf_exp = rowMeans(life_exp[,-1], na.rm = T))
+year_temp = data.frame(Country = rownames(avg_year_temp), year_temp = avg_year_temp$distance)
+year_temp$Country <- gsub("\\.", " ", year_temp$Country)
+
+outer_joined_df <- Reduce(function(x, y) merge(x, y, by = "Country", all = TRUE),
+                          list(CM_cal_mean, CM_fsq_mean, LMP, Genetic_distance, pop_ratio_mean, pop_above65_rate_mean, 
+                               agr_land, doctors, gdp, ht_exp, lf_exp, year_temp))
+
+ggcorrplot(cor(outer_joined_df[,-1], use = "complete.obs"), 
            hc.order = T,
            method = 'circle',
            outline.color = 'white',
            colors = hcl.colors(3, palette = 'Fall'))
 
-ggcorrplot(cor(cor_mat_LM, use = "complete.obs"), 
+ggcorrplot(cor(outer_joined_df[,-1], use = "complete.obs"), 
            hc.order = T,
            lab = T,
            lab_size = 3,
            outline.color = 'white',
            type = 'lower',
-           p.mat = rcorr(as.matrix(cor_mat_LM))$P,
+           p.mat = cor_pmat(outer_joined_df[,-1], use = 'complete.obs'),
            colors = hcl.colors(3, palette = 'Fall'))
 
-cor_pmat(cor_mat_LM, use = 'complete.obs')
-ggcorrplot(cor(cor_mat_LM, use = "complete.obs"), 
-          hc.order = T,
-          lab = T,
-          lab_size = 3,
-          outline.color = 'white',
-          type = 'lower',
-          p.mat = cor_pmat(cor_mat_LM, use = 'complete.obs'),
-          colors = hcl.colors(3, palette = 'Fall'))
-
-cor(cor_mat_LM, use = "complete.obs")[,c('CM_cal_mean', 'CM_fsq_mean')]
 
 
-fit1 <- lm(CM_cal_mean ~ Preval_primary + pop_under15 + pop_under65 + pop_above65_rate + agr_land_perc 
-           + docs_per_1000 + GDP + health_exp + life_exp + avg_temp, data = cor_mat_LM, na.action = na.omit)
-summary(fit1)
 
-fit2 <- lm(CM_fsq_mean ~ Preval_primary + pop_under15 + pop_under65 + pop_above65_rate + agr_land_perc 
-           + docs_per_1000 + GDP + health_exp + life_exp + avg_temp, data = cor_mat_LM, na.action = na.omit)
-summary(fit2)
 
-tree_fit1 <- rpart(CM_cal_mean ~ Preval_primary + pop_under15 + pop_under65 + pop_above65_rate + agr_land_perc 
-                   + docs_per_1000 + GDP + health_exp + life_exp + avg_temp, data = cor_mat_LM, na.action = na.omit)
-plot(tree_fit1)
-text(tree_fit1)
-summary(tree_fit1)
-
-tree_fit2 <- rpart(CM_fsq_mean ~ Preval_primary + pop_under15 + pop_under65 + pop_above65_rate + agr_land_perc 
-                   + docs_per_1000 + GDP + health_exp + life_exp + avg_temp, data = cor_mat_LM, na.action = na.omit)
-plot(tree_fit2)
-text(tree_fit2)
-summary(tree_fit2)
 
