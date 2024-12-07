@@ -4,10 +4,14 @@ library(tidyr)
 library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
+library(ggfortify)
 library(umap)
 library(maps)
 library(plotly)
 library(randomForest)
+library(rpart.plot)
+
+# 1. Data Preprocessing for Clustering
 
 LMP <- read.csv('LM_processed.csv', sep = ',', header = T)
 
@@ -21,6 +25,10 @@ colnames(LM_data_full) <- c('Country', 'Group', 'LMP', 'LMP_95%_CI_min', 'LMP_95
 
 GD <- read.csv('genetic_distance_from_danish.csv', sep = ',', header = T)
 GD <- GD[-c(88:65534),]
+
+LMP_group <- LM_data_full$Group
+names(LMP_group) <- LM_data_full$Country
+#LMP_group <- LMP_group[-74]
 
 LM_data_full$Group <- GD$FST
 
@@ -41,14 +49,115 @@ LM_corr <- read.csv('LM_corr.csv', sep = ',', header = T)
 LM_data_full <- LM_data_full[,-which(colnames(LM_data_full) == 'CM_cal_mean' | colnames(LM_data_full) == 'CM_fsq_mean')]
 LM_data_full <- cbind(LM_data_full, LM_corr[,7:27])
 
-LM_data_full$LM_minmax <- LM_data_full$`LMP_95%_CI_max` - LM_data_full$`LMP_95%_CI_min`
-LM_data_full$CM_cal_mean <- rowMeans(LM_data_full[,6:18], na.rm = T)
-LM_data_full$CM_fsq_mean <- rowMeans(LM_data_full[,19:31], na.rm = T)
-LM_data_full$temp_minmax <- c(apply(LM_data_full[,41:52], 1, max) - apply(LM_data_full[,41:52], 1, min))
+#LM_data_full$LM_minmax <- LM_data_full$`LMP_95%_CI_max` - LM_data_full$`LMP_95%_CI_min`
+#LM_data_full$CM_cal_mean <- rowMeans(LM_data_full[,6:18], na.rm = T)
+#LM_data_full$CM_fsq_mean <- rowMeans(LM_data_full[,19:31], na.rm = T)
+#LM_data_full$temp_minmax <- c(apply(LM_data_full[,41:52], 1, max) - apply(LM_data_full[,41:52], 1, min))
 
-LM_data_full <- LM_data_full[,c(1:3, 53, 54, 55, 56, 32:40)]
+#LM_data_full <- LM_data_full[,c(1:3, 53, 54, 55, 56, 32:40)]
 
 LM_data_full <- na.omit(LM_data_full) 
+str(LM_data_full)
+
+setdiff(names(LMP_group), LM_data_full$Country)
+LMP_group <- LMP_group[-c(which(names(LMP_group) == "Zambia" | names(LMP_group) == "Belgium"))]
+
+# 2. PCA
+#pca <- prcomp(LM_data_full[, c("LMP", "LM_minmax", "CM_cal_mean", "CM_fsq_mean", "temp_minmax", "pop_under15", "pop_under65", "pop_above65_rate", "agr_land_perc", "docs_per_1000", "GDP", "pop_hist", "health_exp", "life_exp")], scale. = TRUE)
+pca <- prcomp(LM_data_full[,-1], scale. = TRUE)
+pca_data <- data.frame(pca$x, Group = LMP_group)
+ggplot(pca_data, aes(x = PC1, y = PC2, color = as.factor(Group))) +
+  geom_point() +
+  stat_ellipse(aes(group = Group), level = 0.8) +
+  labs(title = "PCA of Variables by Group", x = "PC1", y = "PC2", color = "Group") +
+  theme_minimal()
+
+explained_variance <- (pca$sdev^2) / sum(pca$sdev^2)
+cumulative_variance <- cumsum(explained_variance)
+
+data.frame(Principal_Component = 1:length(explained_variance), 
+           Explained_Variance = explained_variance, 
+           Cumulative_Variance = cumulative_variance)
+
+ggplot(data.frame(PC = 1:length(explained_variance), Variance = explained_variance), aes(x = PC, y = Variance)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Scree Plot", x = "Principal Component", y = "Explained Variance") +
+  theme_minimal()
+
+ggplot(data.frame(PC = 1:length(cumulative_variance), Cumulative_Variance = cumulative_variance), aes(x = PC, y = Cumulative_Variance)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Cumulative Explained Variance", x = "Principal Component", y = "Cumulative Explained Variance") +
+  theme_minimal()
+
+
+
+# 3-1. K-means screening
+set.seed(42)
+#wss <- sapply(1:10, function(k) {
+#  kmeans(LM_data_full[, c("LMP", "LM_minmax", "CM_cal_mean", "CM_fsq_mean", "temp_minmax", "pop_under15", "pop_under65", "pop_above65_rate", "agr_land_perc", "docs_per_1000", "GDP", "pop_hist", "health_exp", "life_exp")], centers = k, nstart = 25)$tot.withinss
+#})
+wss <- sapply(1:10, function(k) {
+  kmeans(LM_data_full[,-1], centers = k, nstart = 25)$tot.withinss
+})
+
+
+## Elbow plot
+ggplot(data.frame(k = 1:10, wss = wss), aes(x = k, y = wss)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Elbow Plot for Optimal K", x = "Number of Clusters", y = "Total Within Sum of Squares") +
+  theme_minimal()
+
+## UMAP 2D
+#umap_result <- umap(LM_data_full[, c("LMP", "LM_minmax", "CM_cal_mean", "CM_fsq_mean", "temp_minmax", "pop_under15", "pop_under65", "pop_above65_rate", "agr_land_perc", "docs_per_1000", "GDP", "pop_hist", "health_exp", "life_exp")],
+#                    n_components = 3)
+umap_result <- umap(LM_data_full[,-1],
+                    n_components = 3)
+
+umap_data <- data.frame(UMAP1 = umap_result$layout[,1], UMAP2 = umap_result$layout[,2], Group = LMP_group)
+ggplot(umap_data, aes(x = UMAP1, y = UMAP2, color = as.factor(Group))) +
+  geom_point() +
+  labs(title = "UMAP (2D) by Group", x = "UMAP1", y = "UMAP2", color = "Group") +
+  theme_minimal()
+
+## UMAP 3D
+umap3d_data <- data.frame(UMAP1 = umap_result$layout[,1], UMAP2 = umap_result$layout[,2], UMAP3 = umap_result$layout[,3], Group = LMP_group)
+
+plot_ly(umap3d_data, x = ~UMAP1, y = ~UMAP2, z = ~UMAP3, color = ~Group, type = 'scatter3d', mode = 'markers') %>%
+  layout(title = "UMAP (3D) by Group", scene = list(xaxis = list(title = 'UMAP1'),
+                                                    yaxis = list(title = 'UMAP2'),
+                                                    zaxis = list(title = 'UMAP3')))
+
+
+
+# 4. Random Forest
+rf_model <- randomForest(LMP ~ Group + LM_minmax + CM_cal_mean + CM_fsq_mean + temp_minmax + pop_under15 + pop_under65 + pop_above65_rate + agr_land_perc + docs_per_1000 + GDP + pop_hist + health_exp + life_exp, 
+                         data = LM_data_full, importance = TRUE)
+importance_data <- data.frame(Variable = rownames(importance(rf_model)), Importance = importance(rf_model)[, 1])
+
+ggplot(importance_data, aes(x = reorder(Variable, Importance), y = Importance)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs(title = "Random Forest Variable Importance", x = "Variable", y = "Importance") +
+  theme_minimal()
+
+tree_model <- rpart(LMP ~ Group + LM_minmax + CM_cal_mean + CM_fsq_mean + 
+                      temp_minmax + pop_under15 + pop_under65 + pop_above65_rate + 
+                      agr_land_perc + docs_per_1000 + GDP + pop_hist + 
+                      health_exp + life_exp, data = LM_data_full)
+rpart.plot(tree_model, main = "Decision Tree")
+
+
+
+
+
+
+
+
+
+
 
 
 set.seed(123)
