@@ -200,5 +200,5 @@ to examine overall tendency of data
 6     Austria    54105.58    24.09615 0.22             0.03       32.15997             14.360906    18.58   5.459 53817.305 10.105000 73.10150  3.241334
 ```
 ![Fig 5. (a) Global Distribution of Genetic Distance from Dannish](/LM_CM/image-13.png)
-![Fig 5. (b) Correlation Plot, (c) Correlation plot with p-value](/LM_CM/image-32.png)
+![Fig 5. (b) Correlation Plot, (c) Correlation plot with p-value](/LM_CM/image-31.png)
 
