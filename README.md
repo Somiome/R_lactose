@@ -1,4 +1,4 @@
-# Lactose Malabsorption Analysis
+# Lactose Intolerance and Cattle Milk
 2024 KHU R Programming Project
 
 Dongmin Kim (2021102277), JoonYeong Yu (201803608), Somi Lim (2020102770)
@@ -26,9 +26,9 @@ Dongmin Kim (2021102277), JoonYeong Yu (201803608), Somi Lim (2020102770)
 ### Exploratory Data Analysis `/data/LM_CM.r`
 1. **LMP**
 
-![Fig 1. (a) Distribution of LMP, (b) Frequency Distribution of LMP, (c) Comparison of LMP Across Regions](image-3.png)
-![Fig 1. (d) Regional LMP by Countries](image-4.png)
-![Fig 1. (e) Global Distribution of LMP](image-5.png)
+![Fig 1. (a) Distribution of LMP, (b) Frequency Distribution of LMP, (c) Comparison of LMP Across Regions](/LM_CM/image-3.png)
+![Fig 1. (d) Regional LMP by Countries](/LM_CM/image-4.png)
+![Fig 1. (e) Global Distribution of LMP](/LM_CM/image-5.png)
 
 - The fact that the median value of LMP is 0.73 **(a)** and there are higher frequency when LMP is closer to 1 **(b)** indicates that in almost all countries people can't digest lactose properly.
 - Countries in Europe have the lowest median value of LMP. **(c)**
@@ -37,10 +37,10 @@ Dongmin Kim (2021102277), JoonYeong Yu (201803608), Somi Lim (2020102770)
 -----
 2. **CM**
 
-![Fig 2. (a) Distribution of CM Calories/Year, (b) Frequency Distribution of CM Calories/Year, (c) Comparison of CM Calories/Year Across Regions](image-6.png)
-![Fig 2. (d) Distribution of CM Food Supply Quantity, (e) Frequency Distribution of CM Food Supply Quantity, (f) Comparison of CM Food Supply Quantity Across Regions](image-8.png)
-![Fig 2. (g) Global Distribution of CM Calories/Year](image-9.png)
-![Fig 2. (h) Global Distribution of CM Food Supply Quantity](image-10.png)
+![Fig 2. (a) Distribution of CM Calories/Year, (b) Frequency Distribution of CM Calories/Year, (c) Comparison of CM Calories/Year Across Regions](/LM_CM/image-6.png)
+![Fig 2. (d) Distribution of CM Food Supply Quantity, (e) Frequency Distribution of CM Food Supply Quantity, (f) Comparison of CM Food Supply Quantity Across Regions](/LM_CM/image-8.png)
+![Fig 2. (g) Global Distribution of CM Calories/Year](/LM_CM/image-9.png)
+![Fig 2. (h) Global Distribution of CM Food Supply Quantity](/LM_CM/image-10.png)
 
 - CM Calories/Year distribution **(a) and (b)** has many outliers.
 - There is one extreme outlier **(c)** for CM Calories/Year in Asia.
@@ -50,10 +50,10 @@ Dongmin Kim (2021102277), JoonYeong Yu (201803608), Somi Lim (2020102770)
 - One of outliers in CM Food Supply Quantity data **(h)** is confirmed as Kazakhstan.
 
 ### Regression between LMP and CM
-![Fig 3. (a) 3D scatter: CM year, LMP, CM calories(log)](image-21.png)
-![Fig 3. (b) Linear regression between CM year and CM calories(log), (c) Linear regression between LMP and CM calories(log)](image-22.png)
-![Fig 3. (d) 3D scatter: CM year, LMP, CM Food Supply Quantity](image-23.png)
-![Fig 3. (e) Linear regression between CM year and CM Food Supply Quantity, (f) Linear regression between LMP and CM Food Supply Quantity](image-24.png)
+![Fig 3. (a) 3D scatter: CM year, LMP, CM calories(log)](/LM_CM/image-21.png)
+![Fig 3. (b) Linear regression between CM year and CM calories(log), (c) Linear regression between LMP and CM calories(log)](/LM_CM/image-22.png)
+![Fig 3. (d) 3D scatter: CM year, LMP, CM Food Supply Quantity](/LM_CM/image-23.png)
+![Fig 3. (e) Linear regression between CM year and CM Food Supply Quantity, (f) Linear regression between LMP and CM Food Supply Quantity](/LM_CM/image-24.png)
 - Linear regression model for (a) is `log_CM_cal ~ Year + Preval_primary`.
   - `Year` CM year, `Preval_primary` LMP
     ```
@@ -137,33 +137,33 @@ Dongmin Kim (2021102277), JoonYeong Yu (201803608), Somi Lim (2020102770)
 
 **EDA**
 to examine overall tendency of data
-![Fig 4. (a) PCA plot of Child dependency ratio](image-2.png)
+![Fig 4. (a) PCA plot of Child dependency ratio](/LM_CM/image-2.png)
 - It shows that the original groups, especially `Europe (western, southern, northern)` and `Africa (southern, eastern, western)` tend to cluster together along the first two principal components (PC1, PC2). 
   
-![Fig 4. (b) PCA plot of ratio of population over 65 years old to all](image-14.png)
+![Fig 4. (b) PCA plot of ratio of population over 65 years old to all](/LM_CM/image-14.png)
 - It shows that almost all original groups tend to cluster together along the first two principal components (PC1, PC2). 
 
-![Fig 4. (c) Boxplot of percentage of agricultural land use](image-15.png)
+![Fig 4. (c) Boxplot of percentage of agricultural land use](/LM_CM/image-15.png)
 - Group which has the **highest** median value that indicates how much lands are used for the agricultural purpose is **Former Soviet Republics**.
 - Group which has the **lowest** median value is **Oceania**.
 
-![Fig 4. (d) Boxplot of number of physicians per 1000 people, (e) GDP per capita](image-25.png)
+![Fig 4. (d) Boxplot of number of physicians per 1000 people, (e) GDP per capita](/LM_CM/image-25.png)
 - Group which has the **highest** median value that indicates the number of physicians per 1000 people **(d)** is **Europe (western, eastern, northern)**.
 - Group which has the **lowest** median value **(d)** is **Africa (southern, estern, western)**.
 - Group which has the **highest** median value that indicates GDP per capita **(e)** is also **Europe (western, eastern, northern)**.
 - Group which has the **lowest** median value **(e)** is also **Africa (southern, estern, western)**.
 
 
-![Fig 4. (f) PCA plot of healthcare expenditure](image-30.png)
+![Fig 4. (f) PCA plot of healthcare expenditure](/LM_CM/image-30.png)
 - It shows that some original groups (`Europe (western, southern, northern)`, `Africa (southern, eastern, western)`) tend to cluster together along the first two principal components (PC1, PC2) slightly.
 
-![Fig 4. (g) PCA plot of life expectancy](image-27.png)
+![Fig 4. (g) PCA plot of life expectancy](/LM_CM/image-27.png)
 - It shows that some original groups (`Europe (western, southern, northern)`, `Africa (southern, eastern, western)`) tend to cluster together along the first two principal components (PC1, PC2) slightly.
 
-![Fig 4. (h) Yearly temperature changes by country](image-28.png)
+![Fig 4. (h) Yearly temperature changes by country](/LM_CM/image-28.png)
 - Grey box means a boundary of y-axis (temperature) between 10 to 20.
 
-![Fig 4. (i) Boxplot of average temperature per by country](image-29.png)
+![Fig 4. (i) Boxplot of average temperature per by country](/LM_CM/image-29.png)
 - Group which has the **highest** median value that indicates an average temperature per year by country after scaling it as a distance from 10-20 is **Africa (southern, estern, western)**.
 - Group which has the **lowest** median value is **America**.
 
@@ -199,6 +199,6 @@ to examine overall tendency of data
 5   Australia  1822606.85   290.68308 0.44             0.14       40.01963              9.778728     2.85   4.102 48651.734  8.909545 74.38675  2.143056
 6     Austria    54105.58    24.09615 0.22             0.03       32.15997             14.360906    18.58   5.459 53817.305 10.105000 73.10150  3.241334
 ```
-![Fig 5. (a) Global Distribution of Genetic Distance from Dannish](image-13.png)
-![Fig 5. (b) Correlation Plot, (c) Correlation plot with p-value](image-32.png)
+![Fig 5. (a) Global Distribution of Genetic Distance from Dannish](/LM_CM/image-13.png)
+![Fig 5. (b) Correlation Plot, (c) Correlation plot with p-value](/LM_CM/image-32.png)
 - 

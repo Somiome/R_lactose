@@ -819,6 +819,8 @@ year_temp$Country <- gsub("\\.", " ", year_temp$Country)
 outer_joined_df <- Reduce(function(x, y) merge(x, y, by = "Country", all = TRUE),
                           list(CM_cal_mean, CM_fsq_mean, LMP, Genetic_distance, pop_ratio_mean, pop_above65_rate_mean, 
                                agr_land, doctors, gdp, ht_exp, lf_exp, year_temp))
+outer_joined_df <- outer_joined_df[-c(75,87),]
+
 
 ggcorrplot(cor(outer_joined_df[,-1], use = "complete.obs"), 
            hc.order = T,
@@ -834,9 +836,6 @@ ggcorrplot(cor(outer_joined_df[,-1], use = "complete.obs"),
            type = 'lower',
            p.mat = cor_pmat(outer_joined_df[,-1], use = 'complete.obs'),
            colors = hcl.colors(3, palette = 'Fall'))
-
-
-
 
 
 
