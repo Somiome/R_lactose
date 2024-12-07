@@ -16,11 +16,6 @@ library(ggrepel)
 ##############################################################################
 #                          1. Data Pre-processing                            #
 ##############################################################################
-
-# before loading the data, set the working directory
-# setwd()
-
-# *****************************************************************************
 # A. Load LM data
 ## LM.csv: lactose malabsorption prevalence data per country
 ## LMP: Lactose Malabsorption Prevalence
@@ -38,7 +33,6 @@ names(LM) = c('Country','Group',
               'Preval_primary','95_CI_min_primary','95_CI_max_primary',
               'Preval_secondary','95_CI_min_secondary','95_CI_max_secondary')
 LM <- LM[,-grep("_secondary$", colnames(LM))] # extract col.s about secondary
-head(LM)
 
 # *****************************************************************************
 # B. Load CM data
@@ -59,7 +53,6 @@ head(LM)
 
 cattle_milk <- read.csv('FAOSTAT_data_en_11-8-2024 (1).csv', header = T, sep = ',')
 CM <- cattle_milk[,c(4,6,10,11,12)] # exclude columns that are out of interest
-head(CM)
 
 CM_tidy <- CM %>%
   pivot_wider(
@@ -67,12 +60,9 @@ CM_tidy <- CM %>%
     values_from = Value
   )
 CM_tidy_tmp <- split(CM_tidy, CM_tidy$Element)
-head(CM_tidy_tmp)
 
 CM_cal <- as.data.frame(CM_tidy_tmp$`Calories/Year`)
 CM_fsq <- as.data.frame(CM_tidy_tmp$`Food supply quantity (g/capita/day)`)
-head(CM_cal)
-head(CM_fsq)
 
 
 # *****************************************************************************
@@ -138,20 +128,26 @@ colnames(CM_fsq)[17] = 'Mean'
 # write.csv(CM_cal, 'CM_cal_processed.csv')
 # write.csv(CM_fsq, 'CM_fsq_processed.csv')
 
+
+
+
+
+
+
 ##############################################################################
 #                         2. Exploratory data analysis                       #
 ##############################################################################
 # A. LM data
-## Fig 1: boxplot of LMP in total
+## Fig 1. (a) boxplot of LMP in total
 boxplot(LM$Preval_primary, col = 'cornsilk', main = 'Boxplot of LMP')
 text(x = 1.2, y = median(LM$Preval_primary), 
      labels = paste0("← median: ",round(median(LM$Preval_primary), 2)), col = "black", pos = 4)
 
-## Fig 2: histogram of LMP in total
+## Fig 1. (b) histogram of LMP in total
 hist(LM$Preval_primary, col = hcl.colors(10, palette = "Fall"),
      main = 'Histogram of LMP', breaks = 10, xlab = 'Lactose Malabsorption Prevalence')
 
-## Fig 3: boxplots of LMP per group
+## Fig 1. (c) boxplots of LMP per group
 ##  Africa (southern, eastern, western), America, Asia, Eastern Europe, 
 ##  Europe (western, southern, northern), Former Soviet Republics, 
 ##  Middle East, Northern Africa, Oceania, respectively
@@ -160,7 +156,7 @@ boxplot(LM$Preval_primary ~ LM$Group,
         names = c('AFR', 'AME', 'ASI', 'EEU', 'EUR', 'FSR', 'MIE', 'NAF', 'OCE'),
         xlab = 'Group', ylab = 'LMP', col = cols, main = 'LMP by Groups')
 
-## Fig 4: dumbbell chart for LMP of each country by groups with 95% confidence interval
+## Fig 1. (d) dumbbell chart for LMP of each country by groups with 95% confidence interval
 LM_tmp <- LM
 LM_tmp$Group[LM_tmp$Group == 'Asia' | LM_tmp$Group == 'Oceania'] <- 'Asia and Oceania'
 LM_tmp$Group[LM_tmp$Group == 'Middle East' | LM_tmp$Group == 'Northern Africa'] <- 'Middle East and north Africa'
@@ -174,7 +170,6 @@ LM_tmp <- LM_tmp %>%
   ) %>%
   ungroup()
 
-windows()
 ggplot(LM_tmp, aes(
   y = reorder(Country, Preval_primary),
   x = Preval_primary,
@@ -197,7 +192,7 @@ ggplot(LM_tmp, aes(
     plot.title = element_text(hjust = 0.5)
   )
 
-## Fig 5: LMP of each country on map
+## Fig 1. (e) LMP of each country on map
 LM_CM_cal <- LM %>%
   left_join(CM_cal, by = c("Country" = "Area"))
 
@@ -215,59 +210,16 @@ ggplot(data = map_data) +
 
 # *****************************************************************************
 # B. CM data
-## Fig 5: boxplot of CM_cal / CM_fsq in total
+## Fig 2. (a) boxplot of CM_cal in total
 boxplot(CM_cal$Mean, col = 'cornsilk2', main = 'Boxplot of Cattle Milk Calories/Year')
 text(x = 1.2, y = median(CM_cal$Mean), 
      labels = paste0("← median: ",round(median(CM_cal$Mean), 2)), col = "black", pos = 4)
 
-ggplot(CM_cal, aes(x = 1, y = Mean)) +
-  geom_boxplot(fill = 'cornsilk2') +
-  scale_y_break(c(1e+07, 5e+07), scales = 0.1) +
-  labs(
-    title = 'Boxplot of Cattle Milk Calories/Year',
-    x = 'CM cal'
-  ) +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-boxplot(CM_fsq$Mean, col = 'cornsilk3', main = 'Boxplot of Cattle Milk Food Supply Quantity')
-text(x = 1.2, y = median(CM_fsq$Mean), 
-     labels = paste0("← median: ",round(median(CM_fsq$Mean), 2)), col = "black", pos = 4)
-
-ggplot(CM_fsq, aes(x = 1, y = Mean)) +
-  geom_boxplot(fill = 'cornsilk3') +
-  labs(
-    title = 'Boxplot of Cattle Milk Food Supply Quantity',
-    x = 'CM fsq'
-  ) +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-## Fig 6: histogram of CM_cal in total
+## Fig 2. (b) histogram of CM_cal in total
 hist(CM_cal$Mean, col = hcl.colors(15, palette = "Fall"),
      main = 'Histogram of CM cal.', breaks = 15, xlab = 'Mean of Kcal')
 
-ggplot(CM_cal, aes(x = Mean)) +
-  geom_histogram(fill = 'cornsilk2', bins = 15) +
-  scale_y_break(c(15,100), scales = 0.5) +
-  labs(
-    title = 'Histogram of Cattle Milk Calories/Year',
-    x = 'CM cal'
-  ) + theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
-
-hist(CM_fsq$Mean, col = hcl.colors(15, palette = "Fall"),
-     main = 'Histogram of CM fsq', breaks = 15, xlab = 'Mean of g')
-
-ggplot(CM_fsq, aes(x = Mean)) +
-  geom_histogram(fill = 'cornsilk2', bins = 15) +
-  scale_y_break(c(10,100), scales = 0.1) +
-  labs(
-    title = 'Histogram of Cattle Milk Food Supply Quantity',
-    x = 'CM fsq'
-  ) + theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
-
-
-## Fig 7: boxplots of CM_cal per group
+## Fig 2. (c) boxplots of CM_cal per group
 ggplot(LM_CM_cal, aes(x = Group, y = Mean, fill = Group)) +
   geom_boxplot() +
   scale_fill_manual(values = cols) +
@@ -283,7 +235,16 @@ ggplot(LM_CM_cal, aes(x = Group, y = Mean, fill = Group)) +
     plot.title = element_text(hjust = 0.4)
   )
 
-## Fig 8: boxplots of CM_fsq per group
+## Fig 2. (d) boxplot of CM_fsq in total
+boxplot(CM_fsq$Mean, col = 'cornsilk3', main = 'Boxplot of Cattle Milk Food Supply Quantity')
+text(x = 1.2, y = median(CM_fsq$Mean), 
+     labels = paste0("← median: ",round(median(CM_fsq$Mean), 2)), col = "black", pos = 4)
+
+## Fig 2. (e) histogram of CM_fsq in total
+hist(CM_fsq$Mean, col = hcl.colors(15, palette = "Fall"),
+     main = 'Histogram of CM fsq', breaks = 15, xlab = 'Mean of g')
+
+## Fig 2. (f) boxplots of CM_fsq per group
 LM_CM_fsq <- LM %>%
   left_join(CM_fsq, by = c("Country" = "Area"))
 
@@ -301,7 +262,7 @@ ggplot(LM_CM_fsq, aes(x = Group, y = Mean, fill = Group)) +
     plot.title = element_text(hjust = 0.4)
   )
 
-## Fig 9: CM of each country on map
+## Fig 2. (g) CM_cal of each country on map
 world_cm_cal <- ne_countries(scale = "medium", returnclass = "sf")
 map_data_cm_cal <- world_cm_cal %>%
   left_join(LM_CM_cal, by = c("name" = "Country"))
@@ -314,6 +275,7 @@ ggplot(data = map_data_cm_cal) +
     plot.title = element_text(hjust = 0.5)
   )
 
+## Fig 2. (h) CM_fsq of each country on map
 world_cm_fsq <- ne_countries(scale = "medium", returnclass = "sf")
 map_data_cm_fsq <- world_cm_fsq %>%
   left_join(LM_CM_fsq, by = c("name" = "Country"))
@@ -325,6 +287,12 @@ ggplot(data = map_data_cm_fsq) +
   theme(
     plot.title = element_text(hjust = 0.5)
   )
+
+
+
+
+
+
 
 ##############################################################################
 #                              3. Regression                                 #
@@ -342,9 +310,14 @@ data_for_regression <- LM_CM_cal_long %>%
 
 data_for_regression <- data_for_regression %>%
   filter(CM_cal > 0)
+
 data_for_regression$log_CM_cal <- log(data_for_regression$CM_cal)
+
 lm_model_log <- lm(log_CM_cal ~ Year + Preval_primary, data = data_for_regression)
+
 summary(lm_model_log)
+
+## Fig 3. (a) 3D scatter: CM year, LMP, CM calories(log)
 plot_ly(data_for_regression, x = ~Year, y = ~Preval_primary, z = ~log_CM_cal,
         type = "scatter3d", mode = "markers", color = ~Preval_primary) %>%
   layout(title = "3D Scatter: Year, Prevalence, and Log of Cattle Milk Calories",
@@ -352,6 +325,7 @@ plot_ly(data_for_regression, x = ~Year, y = ~Preval_primary, z = ~log_CM_cal,
                       yaxis = list(title = "Prevalence of Lactose Malabsorption"),
                       zaxis = list(title = "Log of Cattle Milk Calories")))
 
+## Fig 3. (b) Linear regression between CM year and CM calories(log)
 ggplot(data_for_regression, aes(x = Year, y = log_CM_cal)) +
   geom_point(alpha = 0.6) + 
   geom_smooth(method = "lm", se = FALSE, color = "blue") +
@@ -359,6 +333,8 @@ ggplot(data_for_regression, aes(x = Year, y = log_CM_cal)) +
        x = "Year", 
        y = "Log of Cattle Milk Calories (log_CM_cal)") +
   theme_minimal()
+
+## Fig 3. (c) Linear regression between LMP and CM calories(log)
 ggplot(data_for_regression, aes(x = Preval_primary, y = log_CM_cal)) +
   geom_point(alpha = 0.6) + 
   geom_smooth(method = "lm", se = FALSE, color = "red") +
@@ -366,8 +342,6 @@ ggplot(data_for_regression, aes(x = Preval_primary, y = log_CM_cal)) +
        x = "Prevalence of Lactose Malabsorption (Preval_primary)", 
        y = "Log of Cattle Milk Calories (log_CM_cal)") +
   theme_minimal()
-
-
 
 # *****************************************************************************
 # B. LMP & CM_fsq
@@ -380,12 +354,15 @@ LM_CM_fsq_long <- LM_CM_fsq %>%
 data_for_regression_fsq <- LM_CM_fsq_long %>%
   select(Year, CM_fsq, Preval_primary) %>%
   filter(!is.na(CM_fsq) & !is.na(Preval_primary))
+
 data_for_regression_fsq <- data_for_regression_fsq %>%
   filter(CM_fsq > 0)
 
 lm_model_fsq <- lm(CM_fsq ~ Year + Preval_primary, data = data_for_regression_fsq)
+
 summary(lm_model_fsq)
 
+## Fig 3. (d) 3D scatter: CM year, LMP, CM Food Supply Quantity
 plot_ly(data_for_regression_fsq, x = ~Year, y = ~Preval_primary, z = ~CM_fsq,
         type = "scatter3d", mode = "markers", color = ~Preval_primary) %>%
   layout(title = "3D Scatter: Year, Prevalence, and Cattle Milk Food Supply (CM_fsq)",
@@ -393,6 +370,7 @@ plot_ly(data_for_regression_fsq, x = ~Year, y = ~Preval_primary, z = ~CM_fsq,
                       yaxis = list(title = "Prevalence of Lactose Malabsorption"),
                       zaxis = list(title = "Cattle Milk Food Supply (CM_fsq)")))
 
+## Fig 3. (e) Linear regression between CM year and CM Food Supply Quantity
 ggplot(data_for_regression_fsq, aes(x = Year, y = CM_fsq)) +
   geom_point(alpha = 0.6) + 
   geom_smooth(method = "lm", se = FALSE, color = "blue") +
@@ -401,6 +379,7 @@ ggplot(data_for_regression_fsq, aes(x = Year, y = CM_fsq)) +
        y = "Cattle Milk Food Supply (CM_fsq)") +
   theme_minimal()
 
+## Fig 3. (f) Linear regression between LMP and Food Supply Quantity
 ggplot(data_for_regression_fsq, aes(x = Preval_primary, y = CM_fsq)) +
   geom_point(alpha = 0.6) + 
   geom_smooth(method = "lm", se = FALSE, color = "red") +
@@ -410,8 +389,14 @@ ggplot(data_for_regression_fsq, aes(x = Preval_primary, y = CM_fsq)) +
   theme_minimal()
 
 
-# *****************************************************************************
-# C. LMP & Other factors
+
+
+
+
+##############################################################################
+#                              4. Hypothesis                                 #
+##############################################################################
+# A. Load data
 ## pop_under15: population of 0-14 years old
 ## pop_under65: population of 15-65 years old
 ## pop_above65_rate: population rate of >= 65 years old
@@ -465,7 +450,8 @@ year_temp_per_mon <- split(mon_temper, mon_temper$Month)
 year_temp_per_con <- split(mon_temper, mon_temper$Country)
 
 
-
+# *****************************************************************************
+# B. Pre-processing
 pop_under15 = pop_under15[-which(pop_under15$Country == 'Republic of Congo' | 
                                    pop_under15$Country == 'Western Sahara'),]
 pop_under65 = pop_under65[-which(pop_under65$Country == 'Republic of Congo' | 
@@ -492,11 +478,9 @@ health_exp = data.frame(
 life_exp = life_exp[-which(life_exp$Country == 'Republic of Congo' | 
                              life_exp$Country == 'Western Sahara'),]
 
-
-
-
-
-# Child dependency ratio (pop0-15/pop15-65) PCA
+# *****************************************************************************
+# C. EDA
+## Fig 4. (a) Child dependency ratio (pop0-15/pop15-65) PCA
 pop_data <- pop_ratio[, -1]
 row.names(pop_data) <- pop_ratio$Country
 pop_data <- na.omit(pop_data) 
@@ -533,9 +517,7 @@ ggplot(pca_df, aes(x = PC1, y = PC2, color = Group, label = Country)) +
   theme_minimal() +
   theme(legend.position = "bottom")
 
-
-
-# Population 65 ratio PCA
+## Fig 4. (b) Population 65 ratio PCA
 pop65_data <- pop_above65_rate[, -1]
 row.names(pop65_data) <- pop_above65_rate$Country
 pop65_data <- na.omit(pop65_data) 
@@ -572,9 +554,7 @@ ggplot(pca_df2, aes(x = PC1, y = PC2, color = Group, label = Country)) +
   theme_minimal() +
   theme(legend.position = "bottom")
 
-
-
-# Percentage of agricultural land use
+## Fig 4. (c) Percentage of agricultural land use
 agr_land_data <- data.frame(
    Country = agr_land_perc$Country,
    Group = LM$Group,
@@ -589,10 +569,7 @@ ggplot(agr_land_data, aes(x = Group, y = Value, fill = Group)) +
     plot.title = element_text(hjust = 0.4)
   )
 
-
-
-
-# # of physicians and GDP per capita
+## Fig 4. (d) & (e) # of physicians and GDP per capita
 doc_gdp_data <- data.frame(
   Country = doc_and_gdp$Country,
   Group = LM$Group,
@@ -616,9 +593,7 @@ ggplot(doc_gdp_data, aes(x = Group, y = GDP_per_capita, fill = Group)) +
     plot.title = element_text(hjust = 0.4)
   )
 
-
-
-# healthcare expenditure PCA
+## Fig 4. (f)  healthcare expenditure PCA
 health_exp_data <- health_exp[,-1]
 rownames(health_exp_data) <- health_exp$Country
 temp <- is.na(health_exp_data)
@@ -658,10 +633,7 @@ ggplot(pca_df3, aes(x = PC1, y = PC2, color = Group, label = Country)) +
   theme_minimal() +
   theme(legend.position = "bottom")
 
-
-
-
-# life expectancy PCA
+## Fig 4. (g) life expectancy PCA
 life_exp_data <- life_exp[,-1]
 rownames(life_exp_data) <- life_exp$Country
 life_exp_data <- na.omit(life_exp_data)
@@ -699,11 +671,7 @@ ggplot(pca_df4, aes(x = PC1, y = PC2, color = Group, label = Country)) +
   theme_minimal() +
   theme(legend.position = "bottom")
 
-
-
-
-
-# year temperature
+## Fig 4. (h) yearly temperature changes by country 
 avg_year_temp <- t(as.data.frame(lapply(year_temp_per_con, function(x) colMeans(x[,-c(1:2)]))))
 avg_year_temp <- avg_year_temp[,-1]
 
@@ -736,13 +704,11 @@ avg_mon_temp <- data.frame(
   Dec = rowMeans(avg_dec_temp[,-1], na.rm = TRUE)
 )
 
-
 avg_year_temp_long <- avg_year_temp %>%
   as.data.frame() %>% 
   mutate(Country = rownames(avg_year_temp)) %>% 
   pivot_longer(cols = starts_with("X"), names_to = "Year", values_to = "Temperature") %>%
   mutate(Year = as.numeric(gsub("X", "", Year)))
-
 
 ggplot(avg_year_temp_long, aes(x = Year, y = Temperature, group = Country, color = Country)) +
   geom_line() + 
@@ -758,7 +724,7 @@ ggplot(avg_year_temp_long, aes(x = Year, y = Temperature, group = Country, color
        y = "Temperature") +
   theme(legend.position = "none")
 
-
+## Fig 4. (i) Average temperature per year  by country (distance from 10-20)
 avg_year_temp <- cbind(avg_year_temp, rowMeans(avg_year_temp))
 colnames(avg_year_temp)[40] <- "distance"
 
@@ -793,7 +759,10 @@ ggplot(avg_year_temp_data, aes(x = Group, y = distance, fill = Group)) +
 
 
 
-
+##############################################################################
+#                             5. Correlation                                 #
+##############################################################################
+# Data
 CM_cal_mean = data.frame(Country = CM_cal$Area, CM_cal_mean = CM_cal$Mean)
 CM_fsq_mean = data.frame(Country = CM_fsq$Area, CM_fsq_mean = CM_fsq$Mean)
 LMP = data.frame(Country = LM$Country, LMP = LM$Preval_primary)
@@ -816,12 +785,13 @@ lf_exp = data.frame(Country = life_exp$Country, lf_exp = rowMeans(life_exp[,-1],
 year_temp = data.frame(Country = rownames(avg_year_temp), year_temp = avg_year_temp$distance)
 year_temp$Country <- gsub("\\.", " ", year_temp$Country)
 
+# outer join
 outer_joined_df <- Reduce(function(x, y) merge(x, y, by = "Country", all = TRUE),
                           list(CM_cal_mean, CM_fsq_mean, LMP, Genetic_distance, pop_ratio_mean, pop_above65_rate_mean, 
                                agr_land, doctors, gdp, ht_exp, lf_exp, year_temp))
 outer_joined_df <- outer_joined_df[-c(75,87),]
 
-
+## Fig 5. (b) Correlation Plot & (c) correlation plot with p-value
 ggcorrplot(cor(outer_joined_df[,-1], use = "complete.obs"), 
            hc.order = T,
            method = 'circle',
@@ -833,9 +803,15 @@ ggcorrplot(cor(outer_joined_df[,-1], use = "complete.obs"),
            lab = T,
            lab_size = 3,
            outline.color = 'white',
-           type = 'lower',
+           #type = 'lower',
            p.mat = cor_pmat(outer_joined_df[,-1], use = 'complete.obs'),
            colors = hcl.colors(3, palette = 'Fall'))
 
 
 
+
+
+##############################################################################
+#                              6. Regression                                 #
+##############################################################################
+outer_joined_df |> head()
