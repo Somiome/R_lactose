@@ -131,10 +131,6 @@ plot_ly(
     )
   )
 
-
-
-
-
 umap_df <- as.data.frame(umap_result$layout)
 colnames(umap_df) <- c("UMAP1", "UMAP2")
 combined_data <- cbind(LM_data_full, umap_df)
@@ -159,5 +155,3 @@ formula <- as.formula(
 rf_model <- randomForest(Cluster ~ ., data = combined_data, importance = TRUE)
 importance_vals <- importance(rf_model)
 varImpPlot(rf_model, type = 2, main = "Variable Importance")
-
-

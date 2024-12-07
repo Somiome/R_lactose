@@ -200,4 +200,3 @@ ggplot(merged_data, aes(x = Lactose_Intolerance_Rate, y = Calories_Year_per_Capi
   labs(title = "Calories/Year per Capita vs. Lactose Intolerance Rate",
        x = "Lactose Intolerance Rate",
        y = "Calories/Year per Capita")
-
