@@ -109,30 +109,30 @@ Dongmin Kim (2021102277), JoonYeong Yu (201803608), Somi Lim (2020102770)
    - Lactase production declines with age; thus, countries with a higher proportion of children may have higher dairy consumption and sales.
    - https://data.worldbank.org/indicator/SP.POP.0014.TO?view=map
    - `pop_under15`: population of 0-14 years old 
-     - `./data fixed/가설1 인구수/LM_df_0_15_population.csv`
+     - `./data_fixed/가설1 인구수/LM_df_0_15_population.csv`
    - `pop_under65`: population of 15-65 years old
-     - `./data fixed/가설1 인구수/LM_df_15_65_population.csv`
+     - `./data_fixed/가설1 인구수/LM_df_15_65_population.csv`
    - `pop_above65_rate`: population rate of >= 65 years old
-     - `./data fixed/가설1 인구수/LM_df_65_ratio_population.csv`
+     - `./data_fixed/가설1 인구수/LM_df_65_ratio_population.csv`
 2. **Countries with higher land utilization** will have **higher dairy consumption and production.**
     - Efficient land use can support dairy farming, leading to increased dairy production and consumption.
     - https://www.fao.org/faostat/en/#data/RL/visualize
     - `agr_land_perc`: percentage of agricultural land use
-      - `./data fixed/가설2 토지이용도/LM_df_Agricultural_Land.csv`
+      - `./data_fixed/가설2 토지이용도/LM_df_Agricultural_Land.csv`
 3. **Countries with higher dairy consumption** are more likely to be **economically affluent (or have better healthcare access)**.
    - Economically affluent countries have better access to digestive aids and are more health-conscious, leading to higher dairy consumption. Additionally, better healthcare systems can manage lactose intolerance effectively.
    - https://ourworldindata.org/data?topics=Health~Global+Health
    - `doc_and_gdp`: # of physicians and GDP per capita
-     - `'./data fixed/가설3 의료접근성/LM_df_medical_doctors_per_1000_people_vs_gdp_per_capita.csv'`
+     - `'./data_fixed/가설3 의료접근성/LM_df_medical_doctors_per_1000_people_vs_gdp_per_capita.csv'`
    - `health_exp`: health expenditure
-     - `./data fixed/가설3 의료접근성/wide_format_file_healthcare_expenditure_vs_GDP.csv'`
+     - `./data_fixed/가설3 의료접근성/wide_format_file_healthcare_expenditure_vs_GDP.csv'`
    - `life_exp`: life expectancy
-     - `./data fixed/가설3 의료접근성/wide_LM_df_life_expectancy.csv`
+     - `./data_fixed/가설3 의료접근성/wide_LM_df_life_expectancy.csv`
 4. **Countries with an average annual temperature close to 10-20°C and lower monthly temperature variance** will have **higher dairy production**.
    - The optimal temperature range for dairy farming is between 10-20°C. Stable temperatures within this range support dairy industry development.
    - https://ourworldindata.org/grapher/monthly-average-surface-temperatures-by-year?country=~KOR
    - `mon_temper`: monthly average surface temperature by year
-   - `./data fixed/가설4 기온/LM_df_monthly_average_surface_temperatures_by_year.csv`
+   - `./data_fixed/가설4 기온/LM_df_monthly_average_surface_temperatures_by_year.csv`
 
 
 **EDA**
@@ -201,4 +201,5 @@ to examine overall tendency of data
 ```
 ![Fig 5. (a) Global Distribution of Genetic Distance from Dannish](/LM_CM/image-13.png)
 ![Fig 5. (b) Correlation Plot, (c) Correlation plot with p-value](/LM_CM/image-31.png)
+![Fig 5. (d)-(i) Importance plot and tree plot](/LM_CM/image-32.png)
 

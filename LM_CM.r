@@ -12,6 +12,7 @@ library(rpart)
 library(rpart.plot)
 library(randomForest)
 library(ggrepel)
+library(ggparty)
 
 ##############################################################################
 #                          1. Data Pre-processing                            #
@@ -790,6 +791,7 @@ outer_joined_df <- Reduce(function(x, y) merge(x, y, by = "Country", all = TRUE)
                           list(CM_cal_mean, CM_fsq_mean, LMP, Genetic_distance, pop_ratio_mean, pop_above65_rate_mean, 
                                agr_land, doctors, gdp, ht_exp, lf_exp, year_temp))
 outer_joined_df <- outer_joined_df[-c(75,87),]
+outer_joined_df$CM_cal_mean_log <- log(outer_joined_df$CM_cal_mean)
 
 ## Fig 5. (b) Correlation Plot & (c) correlation plot with p-value
 ggcorrplot(cor(outer_joined_df[,-1], use = "complete.obs"), 
@@ -812,17 +814,76 @@ ggcorrplot(cor(outer_joined_df[,-1], use = "complete.obs"),
 
 
 ##############################################################################
-#                              6. Regression                                 #
+#                              6. Random forest                              #
 ##############################################################################
-outer_joined_df |> head()
+set.seed(123)
+data <- na.omit(outer_joined_df)
 
+# 1. LM
+rf_model_LM <- randomForest(LMP ~ Genetic_distance + pop_ratio_mean + 
+                              CM_cal_mean_log + ht_exp + gdp + lf_exp +
+                              pop_above65_rate_mean + doctors, data = data[,-1], importance = TRUE)
+varImpPlot(rf_model_LM)
 
+importance_df <- data.frame(Variable = rownames(rf_model_LM$importance),
+                            Importance = rf_model_LM$importance[,"%IncMSE"])
+importance_df <- importance_df[order(-importance_df$Importance),]
 
+ggplot(importance_df, aes(x = reorder(Variable, Importance), y = Importance)) +
+  geom_bar(stat = "identity", fill = "wheat", width = 0.7) +
+  coord_flip() +
+  labs(title = "Variable Importance (%IncMSE)",
+       x = "Variables",
+       y = "Importance") +
+  theme_minimal()
 
+tree_model_LM <- rpart(LMP ~ Genetic_distance + pop_ratio_mean + 
+                      CM_cal_mean_log + ht_exp + gdp + lf_exp +
+                      pop_above65_rate_mean + doctors, data = data[,-1])
+rpart.plot(tree_model_LM, type = 2, extra = 101, 
+           box.palette = c("wheat1","wheat2","wheat3"),
+           col = "gray4")
 
+# 2. CM
+## cal_log
+rf_model_CM_cal_log <- randomForest(CM_cal_mean_log ~ year_temp + Genetic_distance +
+                                      LMP + pop_ratio_mean + agr_land, data = data[,-1], importance = TRUE)
+varImpPlot(rf_model_CM_cal_log)
+importance_df_CM_cal_log <- data.frame(Variable = rownames(rf_model_CM_cal_log$importance),
+                                       Importance = rf_model_CM_cal_log$importance[,"%IncMSE"])
+importance_df_CM_cal_log <- importance_df_CM_cal_log[order(-importance_df_CM_cal_log$Importance),]
 
+ggplot(importance_df_CM_cal_log, aes(x = reorder(Variable, Importance), y = Importance)) +
+  geom_bar(stat = "identity", fill = "slategray1", width = 0.7) +
+  coord_flip() +
+  labs(title = "Variable Importance (%IncMSE)",
+       x = "Variables",
+       y = "Importance") +
+  theme_minimal()
 
+tree_model_CM_cal <- rpart(CM_cal_mean_log ~ year_temp + Genetic_distance +
+                             LMP + pop_ratio_mean + agr_land, data = data[,-1])
+rpart.plot(tree_model_CM_cal, type = 2, extra = 101, 
+           box.palette = c("slategray1","slategray2","slategray3"),
+           col = "gray4")
 
+## fsq
+rf_model_CM_fsq <- randomForest(CM_fsq_mean ~ year_temp + Genetic_distance + pop_ratio_mean +
+                                  lf_exp + pop_above65_rate_mean + doctors, data = data[,-1], importance = TRUE)
+varImpPlot(rf_model_CM_fsq)
+importance_df_CM_fsq <- data.frame(Variable = rownames(rf_model_CM_fsq$importance),
+                                       Importance = rf_model_CM_fsq$importance[,"%IncMSE"])
+importance_df_CM_fsq <- importance_df_CM_fsq[order(-importance_df_CM_fsq$Importance),]
 
+ggplot(importance_df_CM_fsq, aes(x = reorder(Variable, Importance), y = Importance)) +
+  geom_bar(stat = "identity", fill = "paleturquoise", width = 0.7) +
+  coord_flip() +
+  labs(title = "Variable Importance (%IncMSE)",
+       x = "Variables",
+       y = "Importance") +
+  theme_minimal()
 
-
+tree_model_CM_fsq <- rpart(CM_fsq_mean ~ year_temp + Genetic_distance + pop_ratio_mean +
+                             lf_exp + pop_above65_rate_mean + doctors, data = data[,-1])
+rpart.plot(tree_model_CM_fsq, type = 2, extra = 101, 
+           box.palette =c("paleturquoise","paleturquoise3","paleturquoise4"))
