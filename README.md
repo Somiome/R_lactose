@@ -167,7 +167,7 @@ to examine overall tendency of data
 - Group which has the **highest** median value that indicates an average temperature per year by country after scaling it as a distance from 10-20 is **Africa (southern, estern, western)**.
 - Group which has the **lowest** median value is **America**.
 
-### Correlation
+### Correlation and Random Forest
 - `CM_cal_mean` Mean of CM Calories/Year
 - `CM_fsq_mean` Mean of CM Food Supply Quantity
 - `LMP` Lactose Malabsorption Prevalence
@@ -201,5 +201,54 @@ to examine overall tendency of data
 ```
 ![Fig 5. (a) Global Distribution of Genetic Distance from Dannish](/LM_CM/image-13.png)
 ![Fig 5. (b) Correlation Plot, (c) Correlation plot with p-value](/LM_CM/image-31.png)
+- When `LMP` is focused on, variables such as `Genetic_distance`, `pop_ratio_mean`, `CM_cal_mean_log`, `ht_exp`, `gdp`, `lf_exp`, `pop_above65_rate_mean`, and `doctors.` appears correlations with <=0.05 p-value.
+- When `CM_cal_mean_log` is focused on, variables such as `year_temp`, `Genetic_distance`, `LMP`, `pop_ratio_mean`, and `agr_land` appears correlations with <= 0.05 p-value.
+- When `CM_fsq_mean` is focused on, variables such as `year_temp`, `Genetic_distance`, `pop_ratio_mean`, `lf_exp`, `pop_above65_rate_mean`, and `doctors` appears correlations with <= 0.05 p-value.
 ![Fig 5. (d)-(i) Importance plot and tree plot](/LM_CM/image-32.png)
+- In terms of `LMP`, `gdp`, `pop_above65_rate_mean`, `pop_ratio_mean`, `lf_exp`, `doctors`, `ht_exp`, `Genetic_distance`, and `CM_cal_mean_log` are important in descending order.
+- In terms of `CM cal (mean log)`, `Genetic distance`, `LMP`, `agr_land`, `year_temp`, and `pop_ratio_mean` are important in descending order.
+- In terms of `CM_fsq`, `pop_above65_rate_mean`, `lf_exp`, `doctors`, `pop_ratio_mean`, `Genetic_distance`, and `year_temp` are important in descending order.
+- Variables that don't have a significant p-value in the correlation test are excluded for this step.
 
+---
+> **Conclusion**
+> 1. The analysis shows that while LMP is a key determinant in Cattle Milk consumption, other socio-economic and environmental variables, such as GDP, child dependency ratio, elderly population, life expectancy, and etc., contribute significantly. 
+> 2. LMP affects both the Calories per year and Food Supply Quantity from cattle milk consumption, while cattle milk consumption is also correlated with LMP. This demonstrates that they are part of a dynamic feedback loop influenced by health, demographic trends, economic conditions, and other factors.
+> 3. Addressing LMP has critical implications for food security. Failure to mitigate LMP could lead to restrictions in cattle milk consumption and impact the global supply chain. Therefore, a deeper understanding of LMP and its effects is essential for improving food security.
+> 4. Policies targeting LMP should incorporate not only health-related interventions but also economic factors, demographic trends, climate change, and other underlying drivers. Coordinated, multi-sectoral responses are crucial for addressing LMP comprehensively.
+> 
+
+---
+## Case Study: India
+India have about 65% of lactose intolerance, however it has the largest domestic consumption of fluid milk of 87MMT from 2023. The trend is everso growing since.
+
+Northern Indians have lower lactose intolerance rate, averaging about 1/3 of population while southern indians have higher rate with 2/3 of population being affected.
+
+![India Domestic Consumption from 2019-2023](/india_dairy_prod/domestic_consump.png)
+
+And it is 3rd most larest producer of cow milk(Emphasis on cow milk), with 99.5MMT in 2023.
+
+![Global Production 2023](/india_dairy_prod/global_prod_2023.png)
+
+In 2023, India produced 99.5MMT of cow milk, and approximately 92MNT of Buffalo milk, with the percentile of buffalo milk in total milk production growing.
+
+Despite the large production, India is not a major exporter of milk, or considering it's consumption, it is not a major importer either. The country is near self-sufficient in milk production.
+
+### Fluid Milk Chain
+
+Comparing the numbers, the domestic consumption of dairy milk is almost identical to production of cow milk, but accountign for all milk source, domestic consumption is approximately half of total consumption. The rest is processed into other dairy products including ghee, cheese, ...ect.
+
+![India Milk Chain](/india_dairy_prod/Rplot.png)
+
+### Secondary Products
+
+India is also the largest producer in butter industry, accounting for 6750000MT in 2023
+
+![Global Production 2023](/india_dairy_prod/global_butter_prod.png)
+
+### Conclusion
+
+Considering the large populations being affected by lactose intolerance, the consumption is still growing. It is stated that historically india didn't have culture of consuming unfermented dairy product, but modern India consume large quantity regardless. There have been recent awareness of lactose intolerance and the market is growing for lactose-free products.
+
+---
+## Case Study: South Korea
