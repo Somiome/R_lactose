@@ -201,4 +201,4 @@ to examine overall tendency of data
 ```
 ![Fig 5. (a) Global Distribution of Genetic Distance from Dannish](/LM_CM/image-13.png)
 ![Fig 5. (b) Correlation Plot, (c) Correlation plot with p-value](/LM_CM/image-32.png)
-- 
+

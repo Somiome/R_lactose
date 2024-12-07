@@ -407,10 +407,10 @@ ggplot(data_for_regression_fsq, aes(x = Preval_primary, y = CM_fsq)) +
 ## mon_temper: monthly average surface temperature by year
 
 # Hypothesis 1.
-pop_under15 <- read.csv('./data fixed/가설1 인구수/LM_df_0_15_population.csv', header = T, sep = ',')
+pop_under15 <- read.csv('./data_fixed/가설1 인구수/LM_df_0_15_population.csv', header = T, sep = ',')
 pop_under15 <- pop_under15[,c('Country',paste0('X',1960:1998))]
 
-pop_under65 <- read.csv('./data fixed/가설1 인구수/LM_df_15_65_population.csv', header = T, sep = ',')
+pop_under65 <- read.csv('./data_fixed/가설1 인구수/LM_df_15_65_population.csv', header = T, sep = ',')
 pop_under65 <- pop_under65[,c('Country',paste0('X',1960:1998))]
 
 year_columns <- colnames(pop_under15)[2:ncol(pop_under15)]
@@ -423,27 +423,27 @@ for (year in year_columns) {
 }
 head(pop_ratio)
 
-pop_above65_rate <- read.csv('./data fixed/가설1 인구수/LM_df_65_ratio_population.csv', header = T, sep = ',')
+pop_above65_rate <- read.csv('./data_fixed/가설1 인구수/LM_df_65_ratio_population.csv', header = T, sep = ',')
 pop_above65_rate <- pop_above65_rate[,c('Country',paste0('X',1960:1998))]
 
 # Hypothesis 2.
-agr_land_perc <- read.csv('./data fixed/가설2 토지이용도/LM_df_Agricultural_Land.csv', header = T, sep = ',')
+agr_land_perc <- read.csv('./data_fixed/가설2 토지이용도/LM_df_Agricultural_Land.csv', header = T, sep = ',')
 agr_land_perc <- agr_land_perc[,c('Country','Value')]
 
 # Hypothesis 3.
-doc_and_gdp <- read.csv('./data fixed/가설3 의료접근성/LM_df_medical_doctors_per_1000_people_vs_gdp_per_capita.csv',
+doc_and_gdp <- read.csv('./data_fixed/가설3 의료접근성/LM_df_medical_doctors_per_1000_people_vs_gdp_per_capita.csv',
                         header = T, sep = ',')
 doc_and_gdp <- doc_and_gdp[,c(1,11:12)]
 
-health_exp <- read.csv('./data fixed/가설3 의료접근성/wide_format_file_healthcare_expenditure_vs_GDP.csv',
+health_exp <- read.csv('./data_fixed/가설3 의료접근성/wide_format_file_healthcare_expenditure_vs_GDP.csv',
                        header = T, sep = ',')
 health_exp <- health_exp[,c(1,10:31)]
 
-life_exp <- read.csv('./data fixed/가설3 의료접근성/wide_LM_df_life_expectancy.csv', header = T, sep = ',')
+life_exp <- read.csv('./data_fixed/가설3 의료접근성/wide_LM_df_life_expectancy.csv', header = T, sep = ',')
 life_exp <- life_exp[,c(1,10:50)]
 
 # Hypothesis 4.
-mon_temper <- read.csv('./data fixed/가설4 기온/LM_df_monthly_average_surface_temperatures_by_year.csv',
+mon_temper <- read.csv('./data_fixed/가설4 기온/LM_df_monthly_average_surface_temperatures_by_year.csv',
                        header = T, sep = ',')
 mon_temper <- mon_temper[,c(1,10:50)]
 year_temp_per_mon <- split(mon_temper, mon_temper$Month)
@@ -501,7 +501,7 @@ ggplot(scree_data, aes(x = PC, y = Variance)) +
 
 pca_df <- data.frame(
   Country = row.names(pop_data),
-  Group = LM[-13,]$Group,
+  Group = LM$Group,
   PC1 = pca_res$x[, 1],
   PC2 = pca_res$x[, 2]
 )
@@ -803,7 +803,7 @@ ggcorrplot(cor(outer_joined_df[,-1], use = "complete.obs"),
            lab = T,
            lab_size = 3,
            outline.color = 'white',
-           #type = 'lower',
+           type = 'lower',
            p.mat = cor_pmat(outer_joined_df[,-1], use = 'complete.obs'),
            colors = hcl.colors(3, palette = 'Fall'))
 
@@ -815,3 +815,14 @@ ggcorrplot(cor(outer_joined_df[,-1], use = "complete.obs"),
 #                              6. Regression                                 #
 ##############################################################################
 outer_joined_df |> head()
+
+
+
+
+
+
+
+
+
+
+
