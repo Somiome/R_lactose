@@ -267,4 +267,35 @@ And study(Gallego Romero et al., 2012) Suggest that one of factor in lactase per
 Which would suggest that people consumed milk in place for animal protein, hence lower positive selection towards eastern/southern regions in India.
 
 ---
+
 ## Case Study: South Korea
+
+The rate of lactose intolerance in Korea is very high, but milk consumption is also high.
+
+### consumption rate of Koreans by dairy products
+
+According to a survey of the per capita consumption rate of Koreans by dairy products, the proportion of products high in lactose was high.
+
+![consumption rate of Koreans by dairy products](/dairy_production_korea/유당별분류.png)
+
+According to the paper, Koreans' awareness of lactose seems low, but there is a high perception that milk is good for health.
+
+![recognition of lactose and milk](/dairy_production_korea/milklactose.png)
+
+#### Conclusion of high CM
+
+The pervasive perception that Korean milk is healthy leads to high dairy consumption rates regardless of lactose.
+
+### Causes of high LMP
+
+DNA of mummified brains and femurs of the tombs of the Joseon Dynasty was extracted and analyzed, indicating that people of the Joseon Dynasty also suffer from lactose intolerance.
+
+![Lactose intolerance of Joseon](/dairy_production_korea/Joseon.png)
+
+#### Conclusion of high LMP
+
+Koreans also suffered from lactose intolerance, but the evolutionary selection pressure on milk was weak, so the lactase persistence phenotype was not transmitted to later people.
+
+### Conclusion
+
+By Conclusion of high CM and  Conclusion of high LMP, Koreans consume high milk despite high lactose intolerance.
