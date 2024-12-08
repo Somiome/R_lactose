@@ -262,7 +262,7 @@ And study(Gallego Romero et al., 2012) Suggest that one of factor in lactase per
 
 ![Meat Consumption per region](./india_dairy_prod/India_meat_consumption_rural.png)
 ![Dairy Consumption per region](./india_dairy_prod/India_dairy_consumption_rural.png)
-![-13910C>T distribution](./india_dairy_prod/-13910C>T.png)
+![-13910C>T distribution](./india_dairy_prod/13910C>T.png)
 
 Which would suggest that people consumed milk in place for animal protein, hence lower positive selection towards eastern/southern regions in India.
 
