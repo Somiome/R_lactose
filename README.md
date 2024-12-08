@@ -1,5 +1,7 @@
 # Lactose Intolerance and Cattle Milk
-2024 KHU R Programming Project https://bit.ly/lactoseintolerance_R_KHU
+2024 KHU R Programming Project 
+
+[Presentation Link](https://bit.ly/lactoseintolerance_R_KHU)(Only accessible for KHU members)
 
 Dongmin Kim (2021102277), JoonYeong Yu (2018103608), Somi Lim (2020102770)
 
