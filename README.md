@@ -38,7 +38,7 @@ Dongmin Kim (2021102277), JoonYeong Yu (2018103608), Somi Lim (2020102770)
 - The fact that the median value of LMP is 0.73 **(a)** and there are higher frequency when LMP is closer to 1 **(b)** indicates that in almost all countries people can't digest lactose properly.
 - Countries in Europe have the lowest median value of LMP. **(c)**
 - In Europe, there are lots of countries that have LMP values closer to 0, meaning that the majority of residents in those countries can consume dairy products without any metabolic issues. **(d)** Some countries in Asia and Oceania show an extreme LMP value (1) and without any distribution, such as South Korea and Vietnam.
-- The darker blue **(e)** represents higher LMP (closer to 1) around northern Europe such as Sweden, Norway, and United Kingdom.
+- The darker blue **(e)** represents lower LMP (closer to 0) around northern Europe such as Sweden, Norway, and United Kingdom.
 -----
 2. **CM**
 
@@ -122,7 +122,7 @@ Dongmin Kim (2021102277), JoonYeong Yu (2018103608), Somi Lim (2020102770)
 2. **Countries with higher land utilization** will have **higher dairy consumption and production.**
     - Efficient land use can support dairy farming, leading to increased dairy production and consumption.
     - https://www.fao.org/faostat/en/#data/RL/visualize
-    - `agr_land_perc`: percentage of agricultural land use
+    - `agr_land_perc`: percentage of land use
       - `./data_fixed/가설2 토지이용도/LM_df_Agricultural_Land.csv`
 3. **Countries with higher dairy consumption** are more likely to be **economically affluent (or have better healthcare access)**.
    - Economically affluent countries have better access to digestive aids and are more health-conscious, leading to higher dairy consumption. Additionally, better healthcare systems can manage lactose intolerance effectively.
@@ -149,7 +149,7 @@ to examine overall tendency of data
 - It shows that almost all original groups tend to cluster together along the first two principal components (PC1, PC2). 
 
 ![Fig 4. (c) Boxplot of percentage of agricultural land use](/LM_CM/image-15.png)
-- Group which has the **highest** median value that indicates how much lands are used for the agricultural purpose is **Former Soviet Republics**.
+- Group which has the **highest** median value that indicates how much lands are used is **Former Soviet Republics**.
 - Group which has the **lowest** median value is **Oceania**.
 
 ![Fig 4. (d) Boxplot of number of physicians per 1000 people, (e) GDP per capita](/LM_CM/image-25.png)
@@ -181,7 +181,7 @@ to examine overall tendency of data
 - `pop_ratio_mean` Mean of population between 0 and 15 years old divided by population between 15 and 65 years old
   - same as child dependency ratio
 - `pop_above65_rate_mean` Mean of ratio of population above 65 years old
-- `agr_land` Percentage of land for agricultural purpose
+- `agr_land` Percentage of land use
 - `doctors` Number of physicians per 1,000 people
 - `gdp` GDP per capita
 - `ht_exp` Mean of healthcare expenditure
