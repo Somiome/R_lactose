@@ -3,9 +3,12 @@
 
 Dongmin Kim (2021102277), JoonYeong Yu (201803608), Somi Lim (2020102770)
 
-1. **Lactose Malabsorption and Cattle Milk**
-2. **Case Study: India**
-3. **Case Study: South Korea**
+## Table of Contents
+[1. **Lactose Malabsorption and Cattle Milk**](#lactose-intolerance-and-cattle-milk)
+
+[2. **Case Study: India**](#case-study-india)
+
+[3. **Case Study: South Korea**](#case-study-south-korea)
 
 ## Lactose Malabsorption and Cattle Milk
 - Lactose Malabsorption Prevalence (LMP)
@@ -214,21 +217,24 @@ to examine overall tendency of data
 > **Conclusion**
 > 1. The analysis shows that while LMP is a key determinant in Cattle Milk consumption, other socio-economic and environmental variables, such as GDP, child dependency ratio, elderly population, life expectancy, and etc., contribute significantly. 
 > 2. LMP affects both the Calories per year and Food Supply Quantity from cattle milk consumption, while cattle milk consumption is also correlated with LMP. This demonstrates that they are part of a dynamic feedback loop influenced by health, demographic trends, economic conditions, and other factors.
-> 3. Addressing LMP has critical implications for food security. Failure to mitigate LMP could lead to restrictions in cattle milk consumption and impact the global supply chain. Therefore, a deeper understanding of LMP and its effects is essential for improving food security.
+> 3. Addressing LMP has critical implications for food security. Failure to mitigate LMP could lead to restrictions in cattle milk consumption and impact the global supply chain. Therefore, a deeper understanding of LMP and its effects is es sential for improving food security.
 > 4. Policies targeting LMP should incorporate not only health-related interventions but also economic factors, demographic trends, climate change, and other underlying drivers. Coordinated, multi-sectoral responses are crucial for addressing LMP comprehensively.
 > 
 
 ---
 ## Case Study: India
+
+### India
+
 India have about 65% of lactose intolerance, however it has the largest domestic consumption of fluid milk of 87MMT from 2023. The trend is everso growing since.
 
 Northern Indians have lower lactose intolerance rate, averaging about 1/3 of population while southern indians have higher rate with 2/3 of population being affected.
 
-![India Domestic Consumption from 2019-2023](/india_dairy_prod/domestic_consump.png)
+![India Domestic Consumption from 2019-2023](./india_dairy_prod/domestic_consump.png)
 
 And it is 3rd most larest producer of cow milk(Emphasis on cow milk), with 99.5MMT in 2023.
 
-![Global Production 2023](/india_dairy_prod/global_prod_2023.png)
+![Global Production 2023](./india_dairy_prod/global_prod_2023.png)
 
 In 2023, India produced 99.5MMT of cow milk, and approximately 92MNT of Buffalo milk, with the percentile of buffalo milk in total milk production growing.
 
@@ -238,17 +244,27 @@ Despite the large production, India is not a major exporter of milk, or consider
 
 Comparing the numbers, the domestic consumption of dairy milk is almost identical to production of cow milk, but accountign for all milk source, domestic consumption is approximately half of total consumption. The rest is processed into other dairy products including ghee, cheese, ...ect.
 
-![India Milk Chain](/india_dairy_prod/Rplot.png)
+![India Milk Chain](./india_dairy_prod/Rplot.png)
 
 ### Secondary Products
 
 India is also the largest producer in butter industry, accounting for 6750000MT in 2023
 
-![Global Production 2023](/india_dairy_prod/global_butter_prod.png)
+![Global Production 2023](./india_dairy_prod/global_butter_prod.png)
 
-### Conclusion
+### Actual population consumption
 
-Considering the large populations being affected by lactose intolerance, the consumption is still growing. It is stated that historically india didn't have culture of consuming unfermented dairy product, but modern India consume large quantity regardless. There have been recent awareness of lactose intolerance and the market is growing for lactose-free products.
+India, while it's domestic consumption and calory consumption is high, is not the highest in (fluid) milk per capita. In fact, per 2013 study it ranks at 99th in the world.
+
+![Fluid Milk Consumption](./india_dairy_prod/milk_capita.png)
+
+And study(Gallego Romero et al., 2012) Suggest that one of factor in lactase persistence, -13910C>T is distributed mostly in northern india, whereas southern india has higher lactose intolerance rate. The study suggest a shared origin for the mutation in India and Europe, and that due to sociological factor, there were positive selection toward lactose persistance in northern India.
+
+![Meat Consumption per region](./india_dairy_prod/India_meat_consumption_rural.png)
+![Dairy Consumption per region](./india_dairy_prod/India_dairy_consumption_rural.png)
+![-13910C>T distribution](./india_dairy_prod/-13910C>T.png)
+
+Which would suggest that people consumed milk in place for animal protein, hence lower positive selection towards eastern/southern regions in India.
 
 ---
 ## Case Study: South Korea

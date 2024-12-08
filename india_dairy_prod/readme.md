@@ -28,6 +28,16 @@ India is also the largest producer in butter industry, accounting for 6750000MT 
 
 ![Global Production 2023](./global_butter_prod.png)
 
-### Conclusion
+### Actual population consumption
 
-Considering the large populations being affected by lactose intolerance, the consumption is still growing. It is stated that historically india didn't have culture of consuming unfermented dairy product, but modern India consume large quantity regardless. There have been recent awareness of lactose intolerance and the market is growing for lactose-free products.
+India, while it's domestic consumption and calory consumption is high, is not the highest in (fluid) milk per capita. In fact, per 2013 study it ranks at 99th in the world.
+
+![Fluid Milk Consumption](./milk_capita.png)
+
+And study(Gallego Romero et al., 2012) Suggest that one of factor in lactase persistence, -13910C>T is distributed mostly in northern india, whereas southern india has higher lactose intolerance rate. The study suggest a shared origin for the mutation in India and Europe, and that due to sociological factor, there were positive selection toward lactose persistance in northern India.
+
+![Meat Consumption per region](./India_meat_consumption_rural.png)
+![Dairy Consumption per region](./India_dairy_consumption_rural.png)
+![-13910C>T distribution](./-13910C>T.png)
+
+Which would suggest that people consumed milk in place for animal protein, hence lower positive selection towards eastern/southern regions in India.
