@@ -7,25 +7,20 @@ library(gganimate)
 library(gifski)
 library(RColorBrewer)
 
+# Attempt to create animated gif of milk per capita consumption
+# With years as the time variable
+
+# Load the data
 data <- read_csv('./india_dairy_prod/data/per-capita-milk-consumption.csv')
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
 colnames(data) <- c("Entity", "Code", "Year", "Value")
 
+# Join the data to the world map
 map_data <- world %>%
   left_join(data, by = c("iso_a3" = "Code"))
 
-test_year <- 1961
-test_plot <- ggplot(map_data %>% filter(Year == test_year)) +
-  geom_sf(aes(fill = Value), color = "white") +
-  scale_fill_gradientn(colors = brewer.pal(9, "YlGnBu"), na.value = "grey90") +
-  theme_minimal() +
-  labs(title = paste("Milk per Capita -", test_year),
-       fill = "Kg/year") +
-  theme(panel.background = element_rect(fill = "white", color = NA),
-        panel.grid = element_blank())
-
-print(test_plot)
+# Create the animated map
 
 animated_map <- ggplot(map_data, aes(fill = Value)) +
   geom_sf(aes(fill = Value),    # Fill countries by some metric

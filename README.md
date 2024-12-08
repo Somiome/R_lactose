@@ -252,6 +252,8 @@ India is also the largest producer in butter industry, accounting for 6750000MT 
 
 ![Global Production 2023](./india_dairy_prod/global_butter_prod.png)
 
+Per New Delpi India, in 2023, India alone produced total of 6750(1000 Metric Tonne) of Butter, but total export accounted for only 18(1000 MMT), which is less than 1% of total production. This highly implies that most of butter is domestically consumed.
+
 ### Actual population consumption
 
 India, while it's domestic consumption and calory consumption is high, is not the highest in (fluid) milk per capita. In fact, per 2013 study it ranks at 99th in the world.
@@ -265,6 +267,12 @@ And study(Gallego Romero et al., 2012) Suggest that one of factor in lactase per
 ![-13910C>T distribution](./india_dairy_prod/13910.png)
 
 Which would suggest that people consumed milk in place for animal protein, hence lower positive selection towards eastern/southern regions in India.
+
+Also, India’s substantial dairy consumption and production, particularly of cow and buffalo milk, are deeply integrated into culinary traditions and cultural practices. Even in areas with higher lactose intolerance rates, dairy remains a staple—whether consumed directly as fluid milk or processed into forms like butter, ghee, and cheese, which often reduce the lactose content through fermentation or clarifying processes.
+
+### Conclusion
+
+India's dairy consumption might seems odd considering i's high domestic consumption rate and LMP rate, it is result of historic dietary practice, sociological factors and regional genetic diversity. Given India's large butter industry and widespread vegeanism it is not that odd that India have such a high domestic consumption rate of dairy product.
 
 ---
 
