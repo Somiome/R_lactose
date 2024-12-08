@@ -1,7 +1,7 @@
 # Lactose Intolerance and Cattle Milk
 2024 KHU R Programming Project https://bit.ly/lactoseintolerance_R_KHU
 
-Dongmin Kim (2021102277), JoonYeong Yu (201803608), Somi Lim (2020102770)
+Dongmin Kim (2021102277), JoonYeong Yu (2018103608), Somi Lim (2020102770)
 
 ## Table of Contents
 [1. **Lactose Malabsorption and Cattle Milk**](#lactose-intolerance-and-cattle-milk)
